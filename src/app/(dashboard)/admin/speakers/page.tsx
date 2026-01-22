@@ -11,6 +11,10 @@ import {
   Trash2,
   Search,
   User,
+  CheckCircle,
+  XCircle,
+  Clock,
+  Mic,
 } from "lucide-react";
 
 interface Speaker {
@@ -19,6 +23,9 @@ interface Speaker {
   role: string;
   company: string;
   image?: string;
+  email?: string;
+  topic?: string;
+  status: "PENDING" | "APPROVED" | "REJECTED";
 }
 
 export default function AdminSpeakersPage() {
@@ -53,9 +60,26 @@ export default function AdminSpeakersPage() {
     }
   };
 
-  const filteredSpeakers = speakers.filter((speaker) =>
-    speaker.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleStatusChange = async (id: string, status: "APPROVED" | "REJECTED") => {
+    try {
+      const response = await fetch(`/api/admin/speakers/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+      if (response.ok) {
+        setSpeakers(speakers.map((s) => 
+          s.id === id ? { ...s, status } : s
+        ));
+      }
+    } catch (error) {
+      console.error("Error updating speaker status:", error);
+    }
+  };
+
+  const pendingSpeakers = speakers.filter((s) => s.status === "PENDING");
+  const approvedSpeakers = speakers.filter((s) => s.status === "APPROVED" || !s.status);
+  const rejectedSpeakers = speakers.filter((s) => s.status === "REJECTED");
 
   return (
     <div className="min-h-screen pt-20 bg-gray-50">
@@ -88,14 +112,76 @@ export default function AdminSpeakersPage() {
           </div>
         </div>
 
+        {/* Pending Submissions */}
+        {pendingSpeakers.length > 0 && (
+          <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-orange-600" />
+              <h2 className="font-semibold text-orange-800">
+                Candidatures en attente ({pendingSpeakers.length})
+              </h2>
+            </div>
+            <div className="space-y-3">
+              {pendingSpeakers.map((speaker) => (
+                <div key={speaker.id} className="bg-white rounded-lg p-4 flex items-center gap-4">
+                  <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                    <Mic className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-gray-900">{speaker.name}</h3>
+                    <p className="text-sm text-gray-500">
+                      {speaker.role} - {speaker.company}
+                    </p>
+                    {speaker.topic && (
+                      <p className="text-xs text-orange-600 mt-1">Sujet: {speaker.topic}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      className="bg-green-600 hover:bg-green-700 text-white"
+                      onClick={() => handleStatusChange(speaker.id, "APPROVED")}
+                    >
+                      <CheckCircle className="w-4 h-4 mr-1" />
+                      Approuver
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="border-red-300 text-red-600 hover:bg-red-50"
+                      onClick={() => handleStatusChange(speaker.id, "REJECTED")}
+                    >
+                      <XCircle className="w-4 h-4 mr-1" />
+                      Refuser
+                    </Button>
+                    <Button variant="ghost" size="icon" asChild>
+                      <Link href={`/admin/speakers/${speaker.id}`}>
+                        <Pencil className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Approved Speakers */}
         <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div className="p-4 border-b bg-gray-50">
+            <h2 className="font-semibold text-gray-900">
+              Speakers approuvés ({approvedSpeakers.length})
+            </h2>
+          </div>
           {isLoading ? (
             <div className="p-8 text-center text-gray-500">Chargement...</div>
-          ) : filteredSpeakers.length === 0 ? (
-            <div className="p-8 text-center text-gray-500">Aucun speaker trouvé</div>
+          ) : approvedSpeakers.length === 0 ? (
+            <div className="p-8 text-center text-gray-500">Aucun speaker approuvé</div>
           ) : (
             <div className="divide-y">
-              {filteredSpeakers.map((speaker) => (
+              {approvedSpeakers
+                .filter((s) => s.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                .map((speaker) => (
                 <div key={speaker.id} className="p-4 hover:bg-gray-50 flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#0d5a75]/10 rounded-full flex items-center justify-center overflow-hidden">
                     {speaker.image ? (
@@ -128,6 +214,47 @@ export default function AdminSpeakersPage() {
             </div>
           )}
         </div>
+
+        {/* Rejected Speakers */}
+        {rejectedSpeakers.length > 0 && (
+          <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-6">
+            <div className="p-4 border-b bg-red-50">
+              <h2 className="font-semibold text-red-800">
+                Candidatures refusées ({rejectedSpeakers.length})
+              </h2>
+            </div>
+            <div className="divide-y">
+              {rejectedSpeakers.map((speaker) => (
+                <div key={speaker.id} className="p-4 hover:bg-gray-50 flex items-center gap-4 opacity-60">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                    <User className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-gray-900">{speaker.name}</h3>
+                    <p className="text-sm text-gray-500">{speaker.role} - {speaker.company}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleStatusChange(speaker.id, "APPROVED")}
+                    >
+                      Réactiver
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleDelete(speaker.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

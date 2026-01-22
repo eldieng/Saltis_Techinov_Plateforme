@@ -11,6 +11,9 @@ import {
   Trash2,
   Search,
   Building,
+  CheckCircle,
+  XCircle,
+  Clock,
 } from "lucide-react";
 
 interface Exhibitor {
@@ -19,6 +22,9 @@ interface Exhibitor {
   category: string;
   boothNumber?: string;
   isActive: boolean;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  contactName?: string;
+  contactEmail?: string;
 }
 
 export default function AdminExhibitorsPage() {
@@ -53,9 +59,26 @@ export default function AdminExhibitorsPage() {
     }
   };
 
-  const filteredExhibitors = exhibitors.filter((exhibitor) =>
-    exhibitor.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleStatusChange = async (id: string, status: "APPROVED" | "REJECTED") => {
+    try {
+      const response = await fetch(`/api/admin/exhibitors/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status, isActive: status === "APPROVED" }),
+      });
+      if (response.ok) {
+        setExhibitors(exhibitors.map((e) => 
+          e.id === id ? { ...e, status, isActive: status === "APPROVED" } : e
+        ));
+      }
+    } catch (error) {
+      console.error("Error updating exhibitor status:", error);
+    }
+  };
+
+  const pendingExhibitors = exhibitors.filter((e) => e.status === "PENDING");
+  const approvedExhibitors = exhibitors.filter((e) => e.status === "APPROVED" || !e.status);
+  const rejectedExhibitors = exhibitors.filter((e) => e.status === "REJECTED");
 
   return (
     <div className="min-h-screen pt-20 bg-gray-50">
@@ -88,14 +111,73 @@ export default function AdminExhibitorsPage() {
           </div>
         </div>
 
+        {/* Pending Submissions */}
+        {pendingExhibitors.length > 0 && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-yellow-600" />
+              <h2 className="font-semibold text-yellow-800">
+                Candidatures en attente ({pendingExhibitors.length})
+              </h2>
+            </div>
+            <div className="space-y-3">
+              {pendingExhibitors.map((exhibitor) => (
+                <div key={exhibitor.id} className="bg-white rounded-lg p-4 flex items-center gap-4">
+                  <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <Building className="w-5 h-5 text-yellow-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-gray-900">{exhibitor.name}</h3>
+                    <p className="text-sm text-gray-500">
+                      {exhibitor.category} • {exhibitor.contactEmail}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      className="bg-green-600 hover:bg-green-700 text-white"
+                      onClick={() => handleStatusChange(exhibitor.id, "APPROVED")}
+                    >
+                      <CheckCircle className="w-4 h-4 mr-1" />
+                      Approuver
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="border-red-300 text-red-600 hover:bg-red-50"
+                      onClick={() => handleStatusChange(exhibitor.id, "REJECTED")}
+                    >
+                      <XCircle className="w-4 h-4 mr-1" />
+                      Refuser
+                    </Button>
+                    <Button variant="ghost" size="icon" asChild>
+                      <Link href={`/admin/exhibitors/${exhibitor.id}`}>
+                        <Pencil className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Approved Exhibitors */}
         <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div className="p-4 border-b bg-gray-50">
+            <h2 className="font-semibold text-gray-900">
+              Exposants approuvés ({approvedExhibitors.length})
+            </h2>
+          </div>
           {isLoading ? (
             <div className="p-8 text-center text-gray-500">Chargement...</div>
-          ) : filteredExhibitors.length === 0 ? (
-            <div className="p-8 text-center text-gray-500">Aucun exposant trouvé</div>
+          ) : approvedExhibitors.length === 0 ? (
+            <div className="p-8 text-center text-gray-500">Aucun exposant approuvé</div>
           ) : (
             <div className="divide-y">
-              {filteredExhibitors.map((exhibitor) => (
+              {approvedExhibitors
+                .filter((e) => e.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                .map((exhibitor) => (
                 <div key={exhibitor.id} className="p-4 hover:bg-gray-50 flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#FF6B35]/10 rounded-lg flex items-center justify-center">
                     <Building className="w-6 h-6 text-[#FF6B35]" />
@@ -132,6 +214,47 @@ export default function AdminExhibitorsPage() {
             </div>
           )}
         </div>
+
+        {/* Rejected Exhibitors */}
+        {rejectedExhibitors.length > 0 && (
+          <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-6">
+            <div className="p-4 border-b bg-red-50">
+              <h2 className="font-semibold text-red-800">
+                Candidatures refusées ({rejectedExhibitors.length})
+              </h2>
+            </div>
+            <div className="divide-y">
+              {rejectedExhibitors.map((exhibitor) => (
+                <div key={exhibitor.id} className="p-4 hover:bg-gray-50 flex items-center gap-4 opacity-60">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <Building className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-gray-900">{exhibitor.name}</h3>
+                    <p className="text-sm text-gray-500">{exhibitor.category}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleStatusChange(exhibitor.id, "APPROVED")}
+                    >
+                      Réactiver
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleDelete(exhibitor.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

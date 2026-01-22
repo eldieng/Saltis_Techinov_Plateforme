@@ -39,11 +39,24 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
-    const { name, description, logo, website, category, boothNumber, isActive } = body;
+    const { name, description, logo, website, category, boothNumber, isActive, status, contactName, contactEmail, contactPhone, products } = body;
 
     const exhibitor = await prisma.exhibitor.update({
       where: { id },
-      data: { name, description, logo, website, category, boothNumber, isActive },
+      data: { 
+        ...(name !== undefined && { name }),
+        ...(description !== undefined && { description }),
+        ...(logo !== undefined && { logo }),
+        ...(website !== undefined && { website }),
+        ...(category !== undefined && { category }),
+        ...(boothNumber !== undefined && { boothNumber }),
+        ...(isActive !== undefined && { isActive }),
+        ...(status !== undefined && { status }),
+        ...(contactName !== undefined && { contactName }),
+        ...(contactEmail !== undefined && { contactEmail }),
+        ...(contactPhone !== undefined && { contactPhone }),
+        ...(products !== undefined && { products }),
+      },
     });
 
     return NextResponse.json({ exhibitor });

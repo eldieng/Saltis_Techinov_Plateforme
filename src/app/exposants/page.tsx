@@ -80,7 +80,10 @@ const categoryColors: Record<string, string> = {
 
 export default async function ExposantsPage() {
   const exposants = await prisma.exhibitor.findMany({
-    where: { isActive: true },
+    where: { 
+      isActive: true,
+      status: "APPROVED",
+    },
     orderBy: { name: "asc" },
   });
   return (

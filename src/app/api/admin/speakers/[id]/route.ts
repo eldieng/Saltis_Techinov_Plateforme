@@ -39,11 +39,23 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
-    const { name, role, company, bio, image, linkedin, twitter } = body;
+    const { name, role, company, bio, image, linkedin, twitter, email, phone, topic, status } = body;
 
     const speaker = await prisma.speaker.update({
       where: { id },
-      data: { name, role, company, bio, image, linkedin, twitter },
+      data: { 
+        ...(name !== undefined && { name }),
+        ...(role !== undefined && { role }),
+        ...(company !== undefined && { company }),
+        ...(bio !== undefined && { bio }),
+        ...(image !== undefined && { image }),
+        ...(linkedin !== undefined && { linkedin }),
+        ...(twitter !== undefined && { twitter }),
+        ...(email !== undefined && { email }),
+        ...(phone !== undefined && { phone }),
+        ...(topic !== undefined && { topic }),
+        ...(status !== undefined && { status }),
+      },
     });
 
     return NextResponse.json({ speaker });

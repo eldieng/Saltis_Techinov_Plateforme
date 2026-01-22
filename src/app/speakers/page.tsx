@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function SpeakersPage() {
   const speakers = await prisma.speaker.findMany({
+    where: { status: "APPROVED" },
     orderBy: { name: "asc" },
   });
   return (

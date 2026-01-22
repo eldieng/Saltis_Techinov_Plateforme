@@ -267,7 +267,7 @@ model Session {
 }
 
 model Speaker {
-  id          String    @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   role        String
   company     String
@@ -275,15 +275,25 @@ model Speaker {
   image       String?
   linkedin    String?
   twitter     String?
-  checkedIn   Boolean   @default(false)
+  email       String?
+  phone       String?
+  topic       String?       // Proposed topic for submission
+  status      SubmissionStatus @default(PENDING)
+  checkedIn   Boolean       @default(false)
   checkedInAt DateTime?
   checkedInBy String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   sessions  SessionSpeaker[]
 
   @@map("speakers")
+}
+
+enum SubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 model SessionSpeaker {
@@ -302,19 +312,24 @@ model SessionSpeaker {
 // ============================================
 
 model Exhibitor {
-  id          String    @id @default(cuid())
-  name        String
-  description String?
-  logo        String?
-  website     String?
-  category    String    // startup, entreprise, institution, etc.
-  boothNumber String?
-  isActive    Boolean   @default(true)
-  checkedIn   Boolean   @default(false)
-  checkedInAt DateTime?
-  checkedInBy String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id            String           @id @default(cuid())
+  name          String
+  description   String?
+  logo          String?
+  website       String?
+  category      String           // startup, entreprise, institution, etc.
+  boothNumber   String?
+  contactName   String?
+  contactEmail  String?
+  contactPhone  String?
+  products      String?          // Products/services to exhibit
+  status        SubmissionStatus @default(PENDING)
+  isActive      Boolean          @default(true)
+  checkedIn     Boolean          @default(false)
+  checkedInAt   DateTime?
+  checkedInBy   String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
 
   @@map("exhibitors")
 }
