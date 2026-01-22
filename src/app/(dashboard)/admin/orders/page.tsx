@@ -15,6 +15,25 @@ import {
   CreditCard,
 } from "lucide-react";
 
+interface OrderItem {
+  id: string;
+  quantity: number;
+  pass: { name: string };
+}
+
+interface Order {
+  id: string;
+  orderNumber: string;
+  status: string;
+  total: number;
+  customerFirstName: string;
+  customerLastName: string;
+  customerEmail: string;
+  createdAt: Date;
+  items: OrderItem[];
+  tickets: { id: string }[];
+}
+
 export default async function AdminOrdersPage() {
   const session = await getServerSession(authOptions);
 
@@ -36,14 +55,16 @@ export default async function AdminOrdersPage() {
     },
   });
 
+  const typedOrders = orders as Order[];
+
   const stats = {
-    total: orders.length,
-    confirmed: orders.filter((o: { status: string }) => o.status === "CONFIRMED").length,
-    pending: orders.filter((o: { status: string }) => o.status === "PENDING").length,
-    cancelled: orders.filter((o: { status: string }) => o.status === "CANCELLED").length,
-    revenue: orders
-      .filter((o: { status: string }) => o.status === "CONFIRMED")
-      .reduce((sum: number, o: { total: number }) => sum + o.total, 0),
+    total: typedOrders.length,
+    confirmed: typedOrders.filter((o) => o.status === "CONFIRMED").length,
+    pending: typedOrders.filter((o) => o.status === "PENDING").length,
+    cancelled: typedOrders.filter((o) => o.status === "CANCELLED").length,
+    revenue: typedOrders
+      .filter((o) => o.status === "CONFIRMED")
+      .reduce((sum, o) => sum + o.total, 0),
   };
 
   const getStatusBadge = (status: string) => {
@@ -166,7 +187,7 @@ export default async function AdminOrdersPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {orders.length === 0 ? (
+                {typedOrders.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
                       <CreditCard className="w-12 h-12 mx-auto mb-3 text-gray-300" />
@@ -174,7 +195,7 @@ export default async function AdminOrdersPage() {
                     </td>
                   </tr>
                 ) : (
-                  orders.map((order) => (
+                  typedOrders.map((order) => (
                     <tr key={order.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <p className="font-medium text-gray-900">{order.orderNumber}</p>
