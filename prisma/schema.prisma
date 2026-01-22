@@ -1,0 +1,369 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// USER & AUTHENTICATION
+// ============================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  phone         String?
+  firstName     String
+  lastName      String
+  organization  String?
+  role          UserRole  @default(PARTICIPANT)
+  password      String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  orders        Order[]
+  tickets       Ticket[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  ORGANIZER
+  HOSTESS
+  SPEAKER
+  EXHIBITOR
+  PARTICIPANT
+}
+
+// ============================================
+// EVENTS & PASSES
+// ============================================
+
+model Event {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  venue       String
+  address     String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  passes      Pass[]
+  sessions    Session[]
+  orders      Order[]
+
+  @@map("events")
+}
+
+model Pass {
+  id          String   @id @default(cuid())
+  eventId     String
+  name        String
+  description String?
+  price       Int      // Price in FCFA (centimes)
+  features    String[] // Array of features
+  maxQuantity Int?     // null = unlimited
+  soldCount   Int      @default(0)
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  orderItems  OrderItem[]
+  tickets     Ticket[]
+
+  @@map("passes")
+}
+
+// ============================================
+// ORDERS & PAYMENTS
+// ============================================
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String?
+  eventId         String
+  
+  // Customer info (for guest checkout)
+  customerEmail   String
+  customerPhone   String
+  customerFirstName String
+  customerLastName  String
+  customerOrganization String?
+  
+  // Amounts
+  subtotal        Int           // in FCFA
+  fees            Int           @default(0)
+  total           Int           // in FCFA
+  
+  // Payment
+  paymentMethod   PaymentMethod?
+  paymentStatus   PaymentStatus @default(PENDING)
+  paymentRef      String?       // Naboo transaction reference
+  paidAt          DateTime?
+  
+  // Status
+  status          OrderStatus   @default(PENDING)
+  expiresAt       DateTime?     // For pending orders
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user            User?         @relation(fields: [userId], references: [id])
+  event           Event         @relation(fields: [eventId], references: [id])
+  items           OrderItem[]
+  tickets         Ticket[]
+  payments        Payment[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  passId    String
+  quantity  Int
+  unitPrice Int      // Price at time of order
+  total     Int
+  createdAt DateTime @default(now())
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  pass      Pass     @relation(fields: [passId], references: [id])
+
+  @@map("order_items")
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  orderId         String
+  
+  // Naboo payment info
+  nabooRef        String?       @unique
+  nabooStatus     String?
+  paymentMethod   PaymentMethod
+  amount          Int
+  currency        String        @default("XOF")
+  
+  // Status
+  status          PaymentStatus @default(PENDING)
+  failureReason   String?
+  
+  // Metadata
+  metadata        Json?
+  webhookReceived Boolean       @default(false)
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  order           Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+enum PaymentMethod {
+  WAVE
+  ORANGE_MONEY
+  CARD
+  FREE
+  NABOOPAY
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  REFUNDED
+  EXPIRED
+}
+
+// ============================================
+// TICKETS
+// ============================================
+
+model Ticket {
+  id            String       @id @default(cuid())
+  ticketNumber  String       @unique
+  orderId       String
+  passId        String
+  userId        String?
+  
+  // Ticket holder info
+  holderEmail   String
+  holderPhone   String?
+  holderFirstName String
+  holderLastName  String
+  
+  // QR Code
+  qrCode        String       @unique
+  qrCodeUrl     String?
+  
+  // Check-in
+  status        TicketStatus @default(VALID)
+  checkedInAt   DateTime?
+  checkedInBy   String?
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  order         Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  pass          Pass         @relation(fields: [passId], references: [id])
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@map("tickets")
+}
+
+enum TicketStatus {
+  VALID
+  USED
+  CANCELLED
+  EXPIRED
+}
+
+// ============================================
+// SESSIONS (for programme)
+// ============================================
+
+model Session {
+  id          String   @id @default(cuid())
+  eventId     String
+  title       String
+  description String?
+  type        String   // keynote, panel, atelier, etc.
+  theme       String   // ia, fintech, sante, etc.
+  day         Int
+  startTime   String
+  endTime     String
+  room        String
+  capacity    Int?
+  isBreak     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  speakers    SessionSpeaker[]
+
+  @@map("sessions")
+}
+
+model Speaker {
+  id          String    @id @default(cuid())
+  name        String
+  role        String
+  company     String
+  bio         String?
+  image       String?
+  linkedin    String?
+  twitter     String?
+  checkedIn   Boolean   @default(false)
+  checkedInAt DateTime?
+  checkedInBy String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  sessions  SessionSpeaker[]
+
+  @@map("speakers")
+}
+
+model SessionSpeaker {
+  sessionId String
+  speakerId String
+
+  session   Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  speaker   Speaker @relation(fields: [speakerId], references: [id], onDelete: Cascade)
+
+  @@id([sessionId, speakerId])
+  @@map("session_speakers")
+}
+
+// ============================================
+// EXHIBITORS
+// ============================================
+
+model Exhibitor {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  logo        String?
+  website     String?
+  category    String    // startup, entreprise, institution, etc.
+  boothNumber String?
+  isActive    Boolean   @default(true)
+  checkedIn   Boolean   @default(false)
+  checkedInAt DateTime?
+  checkedInBy String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("exhibitors")
+}
+
+// ============================================
+// VISITORS (Walk-in registration)
+// ============================================
+
+model Visitor {
+  id            String    @id @default(cuid())
+  firstName     String
+  lastName      String
+  email         String
+  phone         String?
+  organization  String?
+  source        String    @default("walk-in") // walk-in, referral, etc.
+  
+  // Check-in info
+  checkedInAt   DateTime  @default(now())
+  checkedInBy   String?   // User ID of hostess
+  
+  // For notifications
+  notifyEmail   Boolean   @default(true)
+  notifySms     Boolean   @default(false)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("visitors")
+}
+
+// ============================================
+// BLOG
+// ============================================
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String
+  coverImage  String?
+  authorId    String?
+  category    String   // actualites, interviews, tech, etc.
+  tags        String[]
+  isPublished Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("blog_posts")
+}

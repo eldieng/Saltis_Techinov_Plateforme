@@ -1,0 +1,12 @@
+export { HeroSection } from "./HeroSection";
+export { StatsSection } from "./StatsSection";
+export { AboutSection } from "./AboutSection";
+export { GetPassSection } from "./GetPassSection";
+export { SpeakersSection } from "./SpeakersSection";
+export { PartnersSection } from "./PartnersSection";
+export { CTASection } from "./CTASection";
+export { NewsletterSection } from "./NewsletterSection";
+export { PASChallengeSection } from "./PASChallengeSection";
+export { IASSection } from "./IASSection";
+export { BlogSection } from "./BlogSection";
+export { GallerySection } from "./GallerySection";
