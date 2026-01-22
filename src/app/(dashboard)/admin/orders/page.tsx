@@ -38,12 +38,12 @@ export default async function AdminOrdersPage() {
 
   const stats = {
     total: orders.length,
-    confirmed: orders.filter((o) => o.status === "CONFIRMED").length,
-    pending: orders.filter((o) => o.status === "PENDING").length,
-    cancelled: orders.filter((o) => o.status === "CANCELLED").length,
+    confirmed: orders.filter((o: { status: string }) => o.status === "CONFIRMED").length,
+    pending: orders.filter((o: { status: string }) => o.status === "PENDING").length,
+    cancelled: orders.filter((o: { status: string }) => o.status === "CANCELLED").length,
     revenue: orders
-      .filter((o) => o.status === "CONFIRMED")
-      .reduce((sum, o) => sum + o.total, 0),
+      .filter((o: { status: string }) => o.status === "CONFIRMED")
+      .reduce((sum: number, o: { total: number }) => sum + o.total, 0),
   };
 
   const getStatusBadge = (status: string) => {
