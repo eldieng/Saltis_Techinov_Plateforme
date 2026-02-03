@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Suivez les dernières actualités de SALTIS TechInov : articles, annonces et insights sur l'IA et l'innovation en Afrique.",
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic'; // Always fetch fresh data
 
 const categoryColors: Record<string, string> = {
   actualites: "bg-blue-100 text-blue-700",

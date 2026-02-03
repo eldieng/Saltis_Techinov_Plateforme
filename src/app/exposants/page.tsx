@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "Découvrez les exposants de SALTIS TechInov 2025 : startups, entreprises tech et institutions innovantes.",
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic'; // Always fetch fresh data
 
 const benefits = [
   "Visibilité auprès de 5000+ participants qualifiés",

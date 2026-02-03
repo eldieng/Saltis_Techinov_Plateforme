@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Découvrez le programme complet de SALTIS TechInov 2025 : conférences, panels, ateliers et networking.",
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic'; // Always fetch fresh data
 
 export default async function ProgrammePage() {
   const sessions = await prisma.session.findMany({
