@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     "Découvrez les speakers et intervenants de SALTIS TechInov 2025 : experts en IA, entrepreneurs et leaders du numérique.",
 };
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function SpeakersPage() {
   const speakers = await prisma.speaker.findMany({
     where: { status: "APPROVED" },

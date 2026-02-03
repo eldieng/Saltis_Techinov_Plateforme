@@ -13,6 +13,8 @@ import {
   GallerySection,
 } from "@/components/home";
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default function Home() {
   return (
     <>
