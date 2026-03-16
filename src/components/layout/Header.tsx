@@ -26,7 +26,7 @@ const navigation = [
   { name: "Salon", href: "/salon" },
   { name: "Programme", href: "/programme" },
   { name: "Speakers", href: "/speakers" },
-  { name: "P.A.S Challenge", href: "/pag-challenge" },
+  { name: "P.A.S Challenge", href: "/pas-challenge" },
   { name: "A propos d'IAS", href: "/ias" },
 ];
 

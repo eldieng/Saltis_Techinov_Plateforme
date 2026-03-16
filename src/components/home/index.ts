@@ -10,3 +10,4 @@ export { PASChallengeSection } from "./PASChallengeSection";
 export { IASSection } from "./IASSection";
 export { BlogSection } from "./BlogSection";
 export { GallerySection } from "./GallerySection";
+export { PhotoGallerySection } from "./PhotoGallerySection";

@@ -2,15 +2,12 @@ import {
   HeroSection,
   StatsSection,
   AboutSection,
-  GetPassSection,
   SpeakersSection,
   PartnersSection,
-  CTASection,
   NewsletterSection,
-  PASChallengeSection,
-  IASSection,
   BlogSection,
   GallerySection,
+  PhotoGallerySection,
 } from "@/components/home";
 
 export const dynamic = 'force-dynamic'; // Always fetch fresh data
@@ -31,13 +28,10 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <AboutSection />
-      <PASChallengeSection />
-      <IASSection />
-      <GetPassSection />
       <SpeakersSection />
+      <PhotoGallerySection />
       <GallerySection />
       <BlogSection />
-      <CTASection />
       <PartnersSection />
       <NewsletterSection />
     </>
