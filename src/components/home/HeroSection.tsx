@@ -72,7 +72,7 @@ export function HeroSection() {
       </div>
 
       {/* Centered Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto pt-20">
         {/* Main Title */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-[0.15em] mb-4">
           SALTIS

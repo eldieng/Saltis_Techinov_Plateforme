@@ -59,20 +59,20 @@ export function Header() {
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logos */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/Logo-SALTIS.png"
+              src="/images/logo_off_saltis.png"
               alt="SALTIS Logo"
-              width={50}
-              height={50}
-              className="h-12 w-auto"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
             />
             <Image
-              src="/images/ias-image.jpg"
+              src="/images/logo_off_ias.png"
               alt="IAS Logo"
-              width={100}
-              height={50}
-              className="h-10 w-auto rounded"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
             />
           </Link>
 
@@ -175,20 +175,20 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col space-y-6 mt-8">
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="flex items-center space-x-2 mb-4">
                   <Image
-                    src="/images/Logo-SALTIS.png"
+                    src="/images/logo_off_saltis.png"
                     alt="SALTIS Logo"
                     width={40}
                     height={40}
                     className="h-10 w-auto"
                   />
                   <Image
-                    src="/images/IAS - Logo.png"
+                    src="/images/logo_off_ias.png"
                     alt="IAS Logo"
-                    width={80}
+                    width={40}
                     height={40}
-                    className="h-8 w-auto"
+                    className="h-10 w-auto"
                   />
                 </div>
                 {navigation.map((item) => (
