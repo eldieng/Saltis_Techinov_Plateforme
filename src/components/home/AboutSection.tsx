@@ -1,59 +1,68 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Cpu, Globe, Lightbulb } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const features = [
-  {
-    icon: Cpu,
-    title: "Technologie & Innovation",
-    description:
-      "Découvrez les dernières avancées en Intelligence Artificielle et leur application dans divers secteurs.",
-  },
-  {
-    icon: Globe,
-    title: "Héritage Culturel",
-    description:
-      "L'Afrofuturisme rencontre la tradition : une vision unique de l'innovation ancrée dans notre identité.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Vision Afrofuturiste",
-    description:
-      "Un dialogue entre modernité et tradition, homme et machine, passé et avenir pour l'Afrique.",
-  },
+const highlights = [
+  "Mettre en avant notre savoir faire",
+  "Ouverture Internationale",
+  "Attirer les investissements",
 ];
 
 export function AboutSection() {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-gradient-to-b from-white to-blue-50/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
-              <span className="text-[#FF6B35] font-semibold text-sm uppercase tracking-wider">
-                À propos de SALTIS
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0d5a75] mt-2">
-                L&apos;Afrofuturisme rencontre la Tradition
+              <Image
+                src="/images/Logo-SALTIS.png"
+                alt="SALTIS Logo"
+                width={120}
+                height={60}
+                className="h-12 w-auto mb-4"
+              />
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0d5a75]">
+                SALTIS
               </h2>
             </div>
 
-            <p className="text-gray-600 text-lg leading-relaxed">
-              SALTIS TechInov est un événement incontournable au Sénégal dédié à
-              l&apos;innovation technologique. Il rassemble institutions,
-              entrepreneurs, investisseurs et passionnés du numérique autour
-              d&apos;une vision commune : façonner l&apos;avenir technologique de
-              l&apos;Afrique.
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Est bien plus qu&apos;un événement. C&apos;est une plateforme stratégique et un acteur
+              structurant de l&apos;écosystème technologique africain. Il a pour ambition de positionner
+              le Sénégal comme une référence continentale en matière d&apos;excellence numérique,
+              de recherche technologique et d&apos;innovation responsable.
             </p>
 
-            <p className="text-gray-600 leading-relaxed">
-              Notre symbole : une femme cyborg humanoïde africaine, incarnant la
-              rencontre entre technologie avancée et culture ancestrale, portant
-              fièrement un tingade traditionnel sénégalais.
+            <p className="text-gray-700 leading-relaxed">
+              SALTIS est reconnu et soutenu par la Présidence et la Primature.
+              Le Salon est porté par le Ministère de la communication des Télécommunications et
+              du Numérique.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <p className="text-gray-700 leading-relaxed">
+              Labellisé par le Sommet International de l&apos;IA en 2024, SALTIS s&apos;impose désormais
+              comme un espace d&apos;influence, de réflexion, de démonstration et de connexion. Il
+              fédère chercheurs, startups, décideurs publics, investisseurs et citoyens autour de
+              la transformation numérique du continent.
+            </p>
+
+            {/* Highlights */}
+            <div className="flex flex-wrap gap-3 pt-4">
+              {highlights.map((item, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 border border-[#0d5a75] text-[#0d5a75] rounded-lg text-sm font-medium"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button
                 className="bg-[#0d5a75] hover:bg-[#0d5a75]/90 text-white"
                 asChild
@@ -73,26 +82,17 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right Content - Features */}
-          <div className="space-y-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex gap-6 p-6 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-colors group"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-xl bg-[#0d5a75] flex items-center justify-center group-hover:bg-[#FF6B35] transition-colors">
-                    <feature.icon className="w-7 h-7 text-white" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-[#0d5a75] mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              </div>
-            ))}
+          {/* Right Content - Image */}
+          <div className="relative">
+            <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden">
+              <Image
+                src="/images/ias-image.jpg"
+                alt="SALTIS - Innovation Africaine"
+                fill
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-100/50 to-transparent" />
+            </div>
           </div>
         </div>
       </div>
