@@ -88,19 +88,14 @@ export function LivreBlancSection() {
               {/* Right - Book Cover */}
               <div className="lg:col-span-2 bg-gradient-to-br from-[#0d5a75] to-[#094559] p-8 lg:p-12 flex flex-col items-center justify-center">
                 <div className="relative">
-                  {/* Book mockup */}
-                  <div className="w-48 h-64 bg-white rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                    <div className="w-full h-full bg-gradient-to-br from-[#0d5a75] to-[#1a7a9a] rounded-lg p-4 flex flex-col items-center justify-center text-center">
-                      <Image
-                        src="/images/Logo-SALTIS.png"
-                        alt="SALTIS Logo"
-                        width={60}
-                        height={60}
-                        className="mb-4"
-                      />
-                      <h4 className="text-white font-bold text-lg mb-1">LIVRE BLANC</h4>
-                      <p className="text-white/70 text-xs">Comité Scientifique du SALTIS</p>
-                    </div>
+                  {/* Book cover image */}
+                  <div className="w-52 h-72 rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300 overflow-hidden">
+                    <Image
+                      src="/images/Livre-blanc.png"
+                      alt="Livre Blanc SALTIS 2025"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
 
@@ -109,8 +104,14 @@ export function LivreBlancSection() {
                   <p className="text-white/80 text-sm font-medium mb-2">
                     SCANNEZ POUR TÉLÉCHARGER
                   </p>
-                  <div className="w-24 h-24 bg-white rounded-lg mx-auto flex items-center justify-center">
-                    <span className="text-gray-400 text-xs">QR Code</span>
+                  <div className="w-28 h-28 bg-white rounded-lg mx-auto overflow-hidden p-2">
+                    <Image
+                      src="/images/QRcode_saltis.png"
+                      alt="QR Code téléchargement"
+                      width={100}
+                      height={100}
+                      className="object-contain"
+                    />
                   </div>
                   <p className="text-white/60 text-xs mt-2">
                     Accès direct au téléchargement

@@ -27,11 +27,35 @@ const partners = [
   { name: "Sceau", logo: "/images/partenaire/sceau.jpg" },
   { name: "Logo Portrait", logo: "/images/partenaire/Logo_Portrait-scaled.png" },
   { name: "Partner", logo: "/images/partenaire/logo.png" },
+  { name: "Partner 25", logo: "/images/partenaire/1750793723556.jpg" },
+  { name: "Partner 26", logo: "/images/partenaire/1_OX-WU_hVuyXCx8UX922IZg.png" },
+  { name: "Partner 27", logo: "/images/partenaire/1e9ffea4-5254-4c0d-a07b-6ce083f76a2f.png" },
+  { name: "MEN Alt", logo: "/images/partenaire/1logoMEN.png" },
+  { name: "Partner 29", logo: "/images/partenaire/464732076_1108208484004941_8876554422618881927_n.jpg" },
+  { name: "Partner 30", logo: "/images/partenaire/Capture-decran-2025-11-17-174656.png" },
+  { name: "Partner 31", logo: "/images/partenaire/QWdM9dyv_400x400.jpg" },
+  { name: "Partner 32", logo: "/images/partenaire/WhatsApp-Image-2025-11-08-a-14.26.16_01caaa60.jpg" },
+  { name: "Partner 33", logo: "/images/partenaire/WhatsApp-Image-2025-11-13-at-17.03.03.jpeg" },
+  { name: "Partner 34", logo: "/images/partenaire/channels4_profile.jpg" },
+  { name: "Partner 35", logo: "/images/partenaire/cmfgozlj201tg5n901whcbuuc-company-logo.jpg" },
+  { name: "Partner 36", logo: "/images/partenaire/dark-logo.png" },
+  { name: "Partner 37", logo: "/images/partenaire/https___cdn.evbuc_.com_images_865563939_2356167854303_1_original.jpg" },
+  { name: "Partner 38", logo: "/images/partenaire/image-scaled.jpg" },
+  { name: "Partner 39", logo: "/images/partenaire/images.png" },
+  { name: "Partner 40", logo: "/images/partenaire/images-1.png" },
+  { name: "Partner 41", logo: "/images/partenaire/images-2.png" },
+  { name: "Partner 42", logo: "/images/partenaire/images-3.png" },
+  { name: "Partner 43", logo: "/images/partenaire/images-4.png" },
+  { name: "Partner 44", logo: "/images/partenaire/images-5.png" },
+  { name: "Partner 45", logo: "/images/partenaire/images-6.png" },
+  { name: "Partner 46", logo: "/images/partenaire/logo_v2_rogner_2_1.png" },
+  { name: "Partner 47", logo: "/images/partenaire/logoold2.png" },
 ];
 
 export function PartnersSection() {
-  const row1 = partners.slice(0, 12);
-  const row2 = partners.slice(12);
+  const row1 = partners.slice(0, 16);
+  const row2 = partners.slice(16, 32);
+  const row3 = partners.slice(32);
 
   return (
     <section className="py-20 bg-gray-50 overflow-hidden">
@@ -51,37 +75,37 @@ export function PartnersSection() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative space-y-6">
+        <div className="relative space-y-4">
           {/* First Row - Scrolling Left */}
-          <div className="relative flex overflow-hidden group">
-            <div className="flex gap-6 animate-marquee-left hover:[animation-play-state:paused]">
+          <div className="relative flex overflow-hidden">
+            <div className="flex gap-4 animate-marquee-left">
               {[...row1, ...row1].map((partner, index) => (
                 <div
                   key={`row1-${index}`}
-                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={100}
-                    height={50}
-                    className="object-contain max-h-12 w-auto"
+                    width={80}
+                    height={40}
+                    className="object-contain max-h-10 w-auto"
                   />
                 </div>
               ))}
             </div>
-            <div className="flex gap-6 animate-marquee-left hover:[animation-play-state:paused]" aria-hidden="true">
+            <div className="flex gap-4 animate-marquee-left" aria-hidden="true">
               {[...row1, ...row1].map((partner, index) => (
                 <div
                   key={`row1-dup-${index}`}
-                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={100}
-                    height={50}
-                    className="object-contain max-h-12 w-auto"
+                    width={80}
+                    height={40}
+                    className="object-contain max-h-10 w-auto"
                   />
                 </div>
               ))}
@@ -89,40 +113,78 @@ export function PartnersSection() {
           </div>
 
           {/* Second Row - Scrolling Right */}
-          <div className="relative flex overflow-hidden group">
-            <div className="flex gap-6 animate-marquee-right hover:[animation-play-state:paused]">
-              {[...row2, ...row2, ...row1.slice(0, 6)].map((partner, index) => (
+          <div className="relative flex overflow-hidden">
+            <div className="flex gap-4 animate-marquee-right">
+              {[...row2, ...row2].map((partner, index) => (
                 <div
                   key={`row2-${index}`}
-                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={100}
-                    height={50}
-                    className="object-contain max-h-12 w-auto"
+                    width={80}
+                    height={40}
+                    className="object-contain max-h-10 w-auto"
                   />
                 </div>
               ))}
             </div>
-            <div className="flex gap-6 animate-marquee-right hover:[animation-play-state:paused]" aria-hidden="true">
-              {[...row2, ...row2, ...row1.slice(0, 6)].map((partner, index) => (
+            <div className="flex gap-4 animate-marquee-right" aria-hidden="true">
+              {[...row2, ...row2].map((partner, index) => (
                 <div
                   key={`row2-dup-${index}`}
-                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={100}
-                    height={50}
-                    className="object-contain max-h-12 w-auto"
+                    width={80}
+                    height={40}
+                    className="object-contain max-h-10 w-auto"
                   />
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Third Row - Scrolling Left (slower) */}
+          {row3.length > 0 && (
+            <div className="relative flex overflow-hidden">
+              <div className="flex gap-4 animate-marquee-left" style={{ animationDuration: '50s' }}>
+                {[...row3, ...row3, ...row1.slice(0, 8)].map((partner, index) => (
+                  <div
+                    key={`row3-${index}`}
+                    className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  >
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={80}
+                      height={40}
+                      className="object-contain max-h-10 w-auto"
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="flex gap-4 animate-marquee-left" style={{ animationDuration: '50s' }} aria-hidden="true">
+                {[...row3, ...row3, ...row1.slice(0, 8)].map((partner, index) => (
+                  <div
+                    key={`row3-dup-${index}`}
+                    className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  >
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={80}
+                      height={40}
+                      className="object-contain max-h-10 w-auto"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Become Partner CTA */}
