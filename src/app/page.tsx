@@ -2,7 +2,6 @@ import {
   HeroSection,
   StatsSection,
   AboutSection,
-  SpeakersSection,
   PartnersSection,
   NewsletterSection,
   BlogSection,
@@ -29,12 +28,11 @@ export default function Home() {
       {/* Content */}
       <HeroSection />
       <StatsSection />
-      <ReportsSection />
-      <LivreBlancSection />
       <AboutSection />
       <WhySenegalSection />
-      <SpeakersSection />
       <PhotoGallerySection />
+      <ReportsSection />
+      <LivreBlancSection />
       <BlogSection />
       <PartnersSection />
       <NewsletterSection />
