@@ -93,9 +93,9 @@ const defaultStyle = {
 };
 
 const eventHighlights = [
-  { icon: Calendar, label: "15-16 Juin 2025", sublabel: "2 jours" },
-  { icon: MapPin, label: "Musée des Civilisations Noires", sublabel: "Dakar" },
-  { icon: Users, label: "5000+ Participants", sublabel: "Attendus" },
+  { icon: Calendar, label: "08-09 Décembre 2026", sublabel: "2 jours" },
+  { icon: MapPin, label: "Dakar, Sénégal", sublabel: "Lieu à confirmer" },
+  { icon: Users, label: "10 000+ Participants", sublabel: "Attendus" },
 ];
 
 export default function BilletteriePage() {
@@ -234,7 +234,7 @@ export default function BilletteriePage() {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Réservez votre place au{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">
-                SALTIS 2025
+                SALTIS 2026
               </span>
             </h1>
 

@@ -35,8 +35,6 @@ export function Header() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   
-  // Only use transparent header on homepage
-  const isHomePage = pathname === "/";
   const isAdmin = session?.user?.role === "ADMIN" || session?.user?.role === "ORGANIZER";
   
   useEffect(() => {
@@ -49,16 +47,13 @@ export function Header() {
     
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-  // Use dark text if not on homepage OR if scrolled
-  const useDarkText = !isHomePage || isScrolled;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        useDarkText
-          ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+        isScrolled
+          ? "bg-[#0d5a75] shadow-lg"
+          : "bg-[#0d5a75]/95 backdrop-blur-sm"
       }`}
     >
       <nav className="container mx-auto px-4 lg:px-8">
@@ -73,7 +68,7 @@ export function Header() {
               className="h-12 w-auto"
             />
             <Image
-              src={useDarkText ? "/images/IAS - Logo.png" : "/images/ias-image.jpg"}
+              src="/images/ias-image.jpg"
               alt="IAS Logo"
               width={100}
               height={50}
@@ -87,9 +82,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-[#FF6B35] ${
-                  useDarkText ? "text-gray-700" : "text-white"
-                }`}
+                className="text-sm font-medium transition-colors hover:text-[#FF6B35] text-white"
               >
                 {item.name}
               </Link>
@@ -105,13 +98,9 @@ export function Header() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={`flex items-center space-x-2 ${
-                      useDarkText
-                        ? "text-[#0d5a75] hover:text-[#0d5a75]/80"
-                        : "text-white hover:text-white/80"
-                    }`}
+                    className="flex items-center space-x-2 text-white hover:text-white/80"
                   >
-                    <div className="w-8 h-8 rounded-full bg-[#0d5a75] flex items-center justify-center text-white text-sm font-medium">
+                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white text-sm font-medium">
                       {session.user?.firstName?.charAt(0) || session.user?.email?.charAt(0).toUpperCase()}
                     </div>
                     <span className="hidden xl:inline">
@@ -152,11 +141,7 @@ export function Header() {
             ) : (
               <Button
                 variant="ghost"
-                className={`${
-                  useDarkText
-                    ? "text-[#0d5a75] hover:text-[#0d5a75]/80"
-                    : "text-white hover:text-white/80"
-                }`}
+                className="text-white hover:text-white/80"
                 asChild
               >
                 <Link href="/login">Connexion</Link>
@@ -164,11 +149,7 @@ export function Header() {
             )}
             <Button
               variant="outline"
-              className={`${
-                useDarkText
-                  ? "border-[#0d5a75] text-[#0d5a75] hover:bg-[#0d5a75]/10"
-                  : "border-white text-white hover:bg-white/10 bg-transparent"
-              }`}
+              className="border-white text-white hover:bg-white/10 bg-transparent"
               asChild
             >
               <a href="/devenir-partenaire">Devenir Partenaire</a>
@@ -187,7 +168,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={useDarkText ? "text-[#0d5a75]" : "text-white"}
+                className="text-white"
               >
                 <Menu className="h-6 w-6" />
               </Button>
