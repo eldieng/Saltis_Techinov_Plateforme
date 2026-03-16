@@ -72,22 +72,40 @@ export function HeroSection() {
       </div>
 
       {/* Centered Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto">
         {/* Main Title */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-[0.2em] mb-8">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-[0.15em] mb-4">
           SALTIS
         </h1>
-
-        {/* Location Badge */}
-        <div className="inline-block border border-white/50 px-6 py-2 mb-6">
+        
+        {/* AI Event Badge */}
+        <div className="inline-block border border-white/50 px-6 py-2 mb-8">
           <span className="text-white text-sm md:text-base tracking-[0.3em] uppercase">
-            Dakar
+            AI Event
           </span>
         </div>
 
-        {/* Date & Location */}
-        <p className="text-white text-lg md:text-2xl tracking-wider mb-12 uppercase">
-          Décembre 2026, Dakar - Sénégal
+        {/* Full Title */}
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-6 leading-relaxed">
+          Salon International des Algorithmes,<br />
+          des Sciences, des Technologies et<br />
+          de l&apos;Innovation du Sénégal
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-white/80 text-sm md:text-base mb-6 max-w-2xl">
+          Le <span className="text-[#FF6B35] font-semibold">rendez-vous incontournable</span> de l&apos;Intelligence Artificielle
+          et de l&apos;Innovation Technologique en Afrique de l&apos;Ouest
+        </p>
+
+        {/* Theme */}
+        <p className="text-white/70 text-sm md:text-base italic mb-8 max-w-2xl">
+          Transformer les réalités africaines en opportunités durables et révéler les champions du continent
+        </p>
+
+        {/* Date */}
+        <p className="text-white text-2xl md:text-4xl font-bold tracking-wider mb-10 uppercase">
+          08-09 Décembre 2026
         </p>
 
         {/* CTA Buttons */}
