@@ -62,7 +62,7 @@ export function PhotoGallerySection() {
         {/* Photo Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Large image - spans 2 rows and 2 cols on md+ */}
-          <div className="col-span-2 row-span-2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden group">
+          <div className="col-span-2 row-span-2 relative h-[350px] md:h-[500px] rounded-2xl overflow-hidden group">
             <Image
               src={photos[0].src}
               alt={photos[0].alt}
@@ -76,7 +76,7 @@ export function PhotoGallerySection() {
           {photos.slice(1, 5).map((photo, index) => (
             <div
               key={index}
-              className="relative h-[140px] md:h-[190px] rounded-2xl overflow-hidden group"
+              className="relative h-[170px] md:h-[240px] rounded-2xl overflow-hidden group"
             >
               <Image
                 src={photo.src}
@@ -92,7 +92,7 @@ export function PhotoGallerySection() {
           {photos.slice(5, 8).map((photo, index) => (
             <div
               key={index + 5}
-              className="relative h-[140px] md:h-[180px] rounded-2xl overflow-hidden group"
+              className="relative h-[180px] md:h-[220px] rounded-2xl overflow-hidden group"
             >
               <Image
                 src={photo.src}

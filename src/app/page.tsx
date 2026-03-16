@@ -6,7 +6,6 @@ import {
   PartnersSection,
   NewsletterSection,
   BlogSection,
-  GallerySection,
   PhotoGallerySection,
 } from "@/components/home";
 
@@ -30,7 +29,6 @@ export default function Home() {
       <AboutSection />
       <SpeakersSection />
       <PhotoGallerySection />
-      <GallerySection />
       <BlogSection />
       <PartnersSection />
       <NewsletterSection />
