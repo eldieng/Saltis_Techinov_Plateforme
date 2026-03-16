@@ -12,3 +12,5 @@ export { BlogSection } from "./BlogSection";
 export { GallerySection } from "./GallerySection";
 export { PhotoGallerySection } from "./PhotoGallerySection";
 export { WhySenegalSection } from "./WhySenegalSection";
+export { ReportsSection } from "./ReportsSection";
+export { LivreBlancSection } from "./LivreBlancSection";

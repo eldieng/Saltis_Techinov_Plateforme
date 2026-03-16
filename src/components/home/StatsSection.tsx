@@ -2,21 +2,31 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { TrendingUp, Users, FileText, Building2, Globe, Rocket, BookOpen, MapPin } from "lucide-react";
 
-const stats = [
-  { value: 4000, suffix: "+", label: "participants sur 2 jours" },
-  { value: 3000, suffix: "+", label: "vues du direct et replays" },
-  { value: 29, suffix: "", label: "expositions et stands" },
-  { value: 30, suffix: "", label: "démos & pitchs startups" },
-  { value: 8, suffix: "", label: "MOU signés", padZero: true },
+const mainStats = [
+  { value: 10000, prefix: "+", label: "participants" },
+  { value: 20, prefix: "+", label: "pays représentés" },
+  { value: 200, prefix: "+", label: "exposants & organisations" },
+  { value: 300, prefix: "+", label: "pitchs & demos" },
+  { value: 50, prefix: "+", label: "MOU signés" },
 ];
 
 const images = [
-  "/images/ias-1.jpg",
-  "/images/ias-2.jpg",
-  "/images/ias-3.jpg",
-  "/images/ias-4.jpg",
-  "/images/ias-5.jpg",
+  "/images/retour_photo/IMG_3647-scaled.jpg",
+  "/images/retour_photo/IMG_3636-scaled.jpg",
+  "/images/retour_photo/IMG_3638-scaled.jpg",
+  "/images/retour_photo/IMG_3651-scaled.jpg",
+];
+
+const impactItems = [
+  { icon: Users, text: "Plus de 500 jeunes participants au PAS Challenge" },
+  { icon: FileText, text: "+5 publications stratégiques produites" },
+  { icon: BookOpen, text: "1 Livre Blanc scientifique structurant (2025)" },
+  { icon: Building2, text: "Mobilisation d'investisseurs internationaux" },
+  { icon: Globe, text: "Structuration d'un cluster IA national en émergence" },
+  { icon: MapPin, text: "Déploiement territorial via CANAL'IA" },
+  { icon: Rocket, text: "Accélération de la Stratégie Nationale IA & Données" },
 ];
 
 function useCountUp(end: number, duration: number = 2000) {
@@ -61,28 +71,28 @@ function useCountUp(end: number, duration: number = 2000) {
   return { count, ref };
 }
 
-function StatCard({ value, suffix, label, padZero }: { value: number; suffix: string; label: string; padZero?: boolean }) {
+function StatCard({ value, prefix, label }: { value: number; prefix: string; label: string }) {
   const { count, ref } = useCountUp(value);
-  const displayValue = padZero ? String(count).padStart(2, "0") : count.toLocaleString();
+  const displayValue = count.toLocaleString().replace(/,/g, " ");
   
   return (
-    <div ref={ref} className="bg-[#0a4a62] rounded-2xl p-8 flex flex-col items-center justify-center text-center min-h-[180px]">
-      <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-        {displayValue}{suffix}
+    <div ref={ref} className="bg-[#0a4a62]/80 backdrop-blur rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+      <div className="text-4xl md:text-5xl font-bold text-[#FF6B35] mb-1">
+        {prefix}{displayValue}
       </div>
-      <p className="text-gray-400 text-sm">{label}</p>
+      <p className="text-white/70 text-sm">{label}</p>
     </div>
   );
 }
 
 function ImageCard({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative rounded-2xl overflow-hidden min-h-[180px]">
+    <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
       <Image
         src={src}
         alt={alt}
         fill
-        className="object-cover"
+        className="object-cover hover:scale-105 transition-transform duration-500"
       />
     </div>
   );
@@ -90,24 +100,60 @@ function ImageCard({ src, alt }: { src: string; alt: string }) {
 
 export function StatsSection() {
   return (
-    <section className="py-16 bg-[#0d5a75]">
+    <section className="py-20 bg-gradient-to-b from-[#0d5a75] to-[#094559]">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Grid Layout - 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Row 1 */}
-          <StatCard value={stats[0].value} suffix={stats[0].suffix} label={stats[0].label} />
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1.5 bg-[#FF6B35]/20 border border-[#FF6B35]/40 text-[#FF6B35] text-sm font-semibold rounded-full mb-4">
+            BILAN 2022-2025
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            SALTIS <span className="text-[#FF6B35]">2022-2025</span>
+          </h2>
+          <p className="text-white/60 text-lg">
+            IMPACT - INFLUENCE - STRUCTURATION
+          </p>
+        </div>
+
+        {/* Stats Grid with Images */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          <StatCard value={mainStats[0].value} prefix={mainStats[0].prefix} label={mainStats[0].label} />
           <ImageCard src={images[0]} alt="SALTIS Event" />
-          <StatCard value={stats[1].value} suffix={stats[1].suffix} label={stats[1].label} />
-          
-          {/* Row 2 */}
+          <StatCard value={mainStats[1].value} prefix={mainStats[1].prefix} label={mainStats[1].label} />
           <ImageCard src={images[1]} alt="SALTIS Event" />
-          <StatCard value={stats[2].value} suffix={stats[2].suffix} label={stats[2].label} />
+          <StatCard value={mainStats[2].value} prefix={mainStats[2].prefix} label={mainStats[2].label} />
           <ImageCard src={images[2]} alt="SALTIS Event" />
-          
-          {/* Row 3 */}
-          <StatCard value={stats[3].value} suffix={stats[3].suffix} label={stats[3].label} />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <StatCard value={mainStats[3].value} prefix={mainStats[3].prefix} label={mainStats[3].label} />
           <ImageCard src={images[3]} alt="SALTIS Event" />
-          <StatCard value={stats[4].value} suffix={stats[4].suffix} label={stats[4].label} padZero />
+          <div className="col-span-2 bg-[#0a4a62]/60 backdrop-blur rounded-2xl p-6 flex items-center justify-center">
+            <p className="text-white text-center text-lg">
+              SALTIS est aujourd&apos;hui la <span className="text-[#FF6B35] font-bold">plateforme IA de référence</span> en Afrique francophone.
+            </p>
+          </div>
+        </div>
+
+        {/* Impact Section */}
+        <div className="bg-[#0a4a62]/40 backdrop-blur rounded-2xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <TrendingUp className="w-6 h-6 text-[#FF6B35]" />
+            <h3 className="text-xl font-bold text-white">
+              IMPACT ÉCONOMIQUE & ÉCOSYSTÈME
+            </h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {impactItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-3"
+              >
+                <item.icon className="w-5 h-5 text-[#FF6B35] shrink-0" />
+                <span className="text-white/80 text-sm">{item.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

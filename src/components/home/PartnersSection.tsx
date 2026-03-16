@@ -23,9 +23,16 @@ const partners = [
   { name: "Wossap AI", logo: "/images/partenaire/wossap.ai-1-scaled.png" },
   { name: "Dolph Stat", logo: "/images/partenaire/dolph_stat_consulting_logo.jpg" },
   { name: "PACE", logo: "/images/partenaire/logo-pacex400.png" },
+  { name: "DIT", logo: "/images/partenaire/IconDIT.png" },
+  { name: "Sceau", logo: "/images/partenaire/sceau.jpg" },
+  { name: "Logo Portrait", logo: "/images/partenaire/Logo_Portrait-scaled.png" },
+  { name: "Partner", logo: "/images/partenaire/logo.png" },
 ];
 
 export function PartnersSection() {
+  const row1 = partners.slice(0, 12);
+  const row2 = partners.slice(12);
+
   return (
     <section className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -44,41 +51,73 @@ export function PartnersSection() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
-          {/* First Row - Left to Right */}
-          <div className="flex animate-scroll-left mb-6">
-            <div className="flex gap-8 animate-scroll-left-content">
-              {[...partners.slice(0, 10), ...partners.slice(0, 10)].map((partner, index) => (
+        <div className="relative space-y-6">
+          {/* First Row - Scrolling Left */}
+          <div className="relative flex overflow-hidden group">
+            <div className="flex gap-6 animate-marquee-left hover:[animation-play-state:paused]">
+              {[...row1, ...row1].map((partner, index) => (
                 <div
-                  key={index}
-                  className="flex-shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-24 w-40"
+                  key={`row1-${index}`}
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={120}
-                    height={60}
-                    className="object-contain max-h-16 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-12 w-auto"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-6 animate-marquee-left hover:[animation-play-state:paused]" aria-hidden="true">
+              {[...row1, ...row1].map((partner, index) => (
+                <div
+                  key={`row1-dup-${index}`}
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-12 w-auto"
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Second Row - Right to Left */}
-          <div className="flex animate-scroll-right">
-            <div className="flex gap-8 animate-scroll-right-content">
-              {[...partners.slice(10), ...partners.slice(10)].map((partner, index) => (
+          {/* Second Row - Scrolling Right */}
+          <div className="relative flex overflow-hidden group">
+            <div className="flex gap-6 animate-marquee-right hover:[animation-play-state:paused]">
+              {[...row2, ...row2, ...row1.slice(0, 6)].map((partner, index) => (
                 <div
-                  key={index}
-                  className="flex-shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-24 w-40"
+                  key={`row2-${index}`}
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={120}
-                    height={60}
-                    className="object-contain max-h-16 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-12 w-auto"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-6 animate-marquee-right hover:[animation-play-state:paused]" aria-hidden="true">
+              {[...row2, ...row2, ...row1.slice(0, 6)].map((partner, index) => (
+                <div
+                  key={`row2-dup-${index}`}
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-36"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-12 w-auto"
                   />
                 </div>
               ))}
@@ -107,36 +146,6 @@ export function PartnersSection() {
           </div>
         </div>
       </div>
-
-      {/* CSS for carousel animation */}
-      <style jsx>{`
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        @keyframes scroll-right {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        .animate-scroll-left-content {
-          animation: scroll-left 30s linear infinite;
-        }
-        .animate-scroll-right-content {
-          animation: scroll-right 30s linear infinite;
-        }
-        .animate-scroll-left-content:hover,
-        .animate-scroll-right-content:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }
