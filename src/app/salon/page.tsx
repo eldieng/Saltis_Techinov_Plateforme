@@ -1,96 +1,134 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Calendar,
   MapPin,
-  Users,
-  Lightbulb,
-  Target,
-  Award,
   ArrowRight,
   Sparkles,
   Play,
+  CheckCircle,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Le Salon",
   description:
-    "Découvrez SALTIS TechInov, le plus grand salon de l'Intelligence Artificielle en Afrique de l'Ouest. Musée des Civilisations Noires, Dakar.",
+    "Découvrez SALTIS TechInov, le plus grand salon de l'Intelligence Artificielle en Afrique de l'Ouest. Édition 5 - 08-09 Décembre 2026.",
 };
 
-const highlights = [
+const pourquoiSaltis = [
   {
-    icon: Users,
-    title: "5000+ Participants",
-    description: "Professionnels, entrepreneurs et passionnés du numérique",
+    title: "Penser l'IA pour l'Afrique",
+    description: "Bâtir une intelligence maîtrisée, ancrée dans nos réalités et au service de nos priorités",
   },
   {
-    icon: Lightbulb,
-    title: "100+ Exposants",
-    description: "Startups, entreprises tech et institutions innovantes",
+    title: "L'Intelligence Artificielle comme levier de croissance",
+    description: "Faire de la donnée un levier de prospérité économique, où l'innovation devient le moteur d'un développement durable.",
   },
   {
-    icon: Target,
-    title: "50+ Conférences",
-    description: "Panels, keynotes et ateliers pratiques",
+    title: "Gouvernance Éclairée et Citoyenne",
+    description: "Nourrir les politiques publiques par la recherche et l'éthique, pour une technologie transparente et co-construite avec le citoyen.",
   },
   {
-    icon: Award,
-    title: "Networking Premium",
-    description: "Rencontres B2B et opportunités de partenariat",
+    title: "Révéler des Talents",
+    description: "Détecter, soutenir et accompagner l'excellence africaine pour transformer nos innovateurs en leaders mondiaux.",
   },
 ];
 
-const objectives = [
-  "Promouvoir l'innovation technologique et l'IA en Afrique",
-  "Créer un écosystème tech dynamique au Sénégal",
-  "Faciliter les rencontres entre startups et investisseurs",
-  "Former et sensibiliser aux nouvelles technologies",
-  "Encourager la souveraineté technologique africaine",
+const commentSaltisAgit = [
+  "Un salon annuel international rassemblant plus de 5000 participants autour de conférences, masterclass, démos, IA & Elles, PAS Challenge...",
+  "Un comité scientifique en action, garant de rigueur académique et de continuité stratégique.",
+  "Un cadre de visibilité et de crédibilité pour les startups IA prometteuses.",
+  "Un acteur d'influence, avec des propositions concrètes adressées aux autorités et citoyens.",
+  "Un programme d'activités mensuelles, décentralisées à travers le pays, pour construire collectivement les thématiques clés de chaque édition.",
+];
+
+const ceQueViseSaltis = [
+  "Une référence nationale pour la formation des hauts fonctionnaires aux enjeux de l'IA, des données et de la souveraineté numérique ;",
+  "Un lieu de confiance pour référencer les startups IA solides, créer des ponts entre projets et institutions, et faciliter l'investissement ;",
+  "Une vitrine sur les derniers développements des connaissances et des solutions avec des publications, notes de position et recommandations stratégiques au service de l'intérêt général.",
+];
+
+const historique = [
+  {
+    year: "2022",
+    title: "Fondations & Éthique",
+    items: [
+      "Lancement du PAS Challenge.",
+      "Initiation des premiers débats sur l'éthique et la gouvernance de l'IA",
+    ],
+  },
+  {
+    year: "2023",
+    title: "Stratégie & Partenariats",
+    items: [
+      "Présentation de la Stratégie Nationale IA & Données.",
+      "Développement et consolidation de partenariats stratégiques clés",
+    ],
+  },
+  {
+    year: "2024",
+    title: "Rayonnement & Infrastructure",
+    items: [
+      "Obtention de la labellisation internationale.",
+      "Présentation du supercalculateur Taouey, pilier de la souveraineté numérique",
+    ],
+  },
+  {
+    year: "2025",
+    title: "Structuration & Expertise",
+    items: [
+      "Mise en place du comité scientifique et publication du premier Livre Blanc.",
+      "Renforcement du portage institutionnel et consécration sur la scène internationale",
+    ],
+  },
+  {
+    year: "2026",
+    title: "Expansion & Impact Territorial (Projection)",
+    items: [
+      "Rayonnement : Propulsion des champions continentaux vers le marché mondial et attraction d'investissements stratégiques.",
+      "Inclusion : Territorialisation de l'IA via la CaNal'IA",
+      "Leadership : Célébration de l'audace féminine à travers l'initiative Lingère avec l'insertion en stage d'au minimum 20 jeunes filles",
+    ],
+  },
 ];
 
 export default function SalonPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Immersive */}
+      {/* Hero Section */}
       <section className="relative pt-20 overflow-hidden">
-        {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d5a75] via-[#0a4a62] to-[#083d52]">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF6B35]/20 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3" />
-          <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-cyan-400/10 rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2" />
         </div>
 
         <div className="relative container mx-auto px-4 lg:px-8 py-20 lg:py-32">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-8">
               <Sparkles className="w-4 h-4 text-[#FF6B35]" />
-              <span className="text-white text-sm font-medium">Édition 2025 • Thème : Jàng, Jàngal, Jàngat</span>
+              <span className="text-white text-sm font-medium">Édition 5 du SALTIS : 08-09 Décembre 2026</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Le plus grand Salon de{" "}
+              Une vitrine de{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">
-                l&apos;IA
+                souveraineté technologique
               </span>{" "}
-              en Afrique de l&apos;Ouest
+              africaine
             </h1>
 
             <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Deux jours d&apos;immersion au cœur de l&apos;Intelligence Artificielle, 
-              des technologies innovantes et des rencontres stratégiques.
+              SALTIS est une plateforme de convergence et d&apos;impact pour l&apos;écosystème technologique africain.
             </p>
 
-            {/* Event Info Cards */}
             <div className="flex flex-wrap justify-center gap-4 mb-10">
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-4 border border-white/10">
                 <div className="w-12 h-12 rounded-xl bg-[#FF6B35] flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-left">
-                  <p className="text-white font-bold">15-16 Juin 2025</p>
+                  <p className="text-white font-bold">08-09 Décembre 2026</p>
                   <p className="text-white/60 text-sm">2 jours d&apos;événement</p>
                 </div>
               </div>
@@ -105,7 +143,6 @@ export default function SalonPage() {
               </div>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 size="lg"
@@ -132,7 +169,6 @@ export default function SalonPage() {
           </div>
         </div>
 
-        {/* Wave Separator */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
             <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
@@ -140,192 +176,178 @@ export default function SalonPage() {
         </div>
       </section>
 
-      {/* Stats Section - Floating Cards */}
-      <section className="py-20 bg-white">
+      {/* Pourquoi SALTIS Section */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block text-[#FF6B35] font-semibold text-sm uppercase tracking-wider mb-2">
-              SALTIS en chiffres
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Un événement d&apos;envergure
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((item, index) => (
-              <div
-                key={index}
-                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#0d5a75]/5 to-[#FF6B35]/5 rounded-full blur-2xl" />
-                <div className="relative">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0d5a75] to-[#0a4a62] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <item.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#0d5a75] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section - Modern Layout */}
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#FF6B35]/10 rounded-full px-4 py-2 mb-6">
-                <Sparkles className="w-4 h-4 text-[#FF6B35]" />
-                <span className="text-[#FF6B35] text-sm font-semibold">À propos de SALTIS</span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Un événement{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0d5a75] to-[#FF6B35]">
-                  unique
-                </span>{" "}
-                en son genre
+              <Image
+                src="/images/Logo-SALTIS.png"
+                alt="SALTIS Logo"
+                width={120}
+                height={60}
+                className="h-12 w-auto mb-6"
+              />
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0d5a75] mb-8">
+                POURQUOI SALTIS ?
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Le <strong className="text-[#0d5a75]">SALTIS</strong> (Salon International des Algorithmes, des Sciences,
-                des Technologies et de l&apos;Innovation du Sénégal) est un
-                événement annuel majeur qui rassemble les acteurs clés de
-                l&apos;écosystème technologique africain.
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                L&apos;Afrique doit construire ses propres cadres de pensée et d&apos;action sur l&apos;intelligence artificielle et les technologies émergentes.
               </p>
-              <div className="bg-gradient-to-r from-[#0d5a75]/10 to-transparent p-6 rounded-2xl border-l-4 border-[#FF6B35] mb-8">
-                <p className="text-gray-700 italic">
-                  « Intelligence Artificielle et usages multisectoriels : pour une 
-                  souveraineté technologique, inclusive et durable »
-                </p>
-                <p className="text-sm text-[#0d5a75] font-semibold mt-2">— Thème 2025</p>
-              </div>
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  className="bg-[#0d5a75] hover:bg-[#0d5a75]/90 text-white"
-                  asChild
-                >
-                  <Link href="/programme">
-                    Voir le programme
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-[#0d5a75] text-[#0d5a75]"
-                  asChild
-                >
-                  <Link href="/speakers">Nos speakers</Link>
-                </Button>
-              </div>
-            </div>
-            
-            {/* Objectives Card */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0d5a75] to-[#083d52] rounded-3xl transform rotate-3" />
-              <div className="relative bg-gradient-to-br from-[#0d5a75] to-[#0a4a62] rounded-3xl p-8 lg:p-10">
-                <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                  <Target className="w-7 h-7 text-[#FF6B35]" />
-                  Nos Objectifs
-                </h3>
-                <ul className="space-y-5">
-                  {objectives.map((objective, index) => (
-                    <li key={index} className="flex items-start gap-4 group">
-                      <div className="w-8 h-8 rounded-xl bg-[#FF6B35] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                        <span className="text-white text-sm font-bold">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <span className="text-white/90 text-lg">{objective}</span>
-                    </li>
-                  ))}
+              
+              <div className="bg-[#0d5a75] rounded-2xl p-6 text-white mb-8">
+                <p className="font-semibold mb-4">SALTIS est né d&apos;une conviction forte :</p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" />
+                    <span>L&apos;IA n&apos;est pas seulement une affaire de recherche ou de marché, mais un levier de transformation sociale, économique et politique</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" />
+                    <span>Il faut connecter les acteurs, rendre visibles les talents et projets, et traduire les ambitions nationales en actions concrètes</span>
+                  </li>
                 </ul>
               </div>
             </div>
+
+            <div className="space-y-6">
+              {pourquoiSaltis.map((item, index) => (
+                <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                  <h3 className="text-[#FF6B35] font-semibold text-lg mb-2">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Venue Section */}
+      {/* Comment SALTIS Agit Section */}
+      <section className="py-24 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <Image
+                src="/images/Logo-SALTIS.png"
+                alt="SALTIS Logo"
+                width={100}
+                height={50}
+                className="h-10 w-auto mb-6"
+              />
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0d5a75] mb-8">
+                COMMENT<br />SALTIS AGIT ?
+              </h2>
+              <div className="bg-[#0d5a75] rounded-2xl p-6 text-white">
+                <p className="font-medium">SALTIS est une plateforme de convergence et d&apos;impact</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {commentSaltisAgit.map((item, index) => (
+                <div key={index} className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-8 h-8 rounded-full bg-[#FF6B35] flex items-center justify-center shrink-0">
+                    <span className="text-white text-sm font-bold">{index + 1}</span>
+                  </div>
+                  <p className="text-gray-700">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ce que vise SALTIS Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden bg-gray-200">
+              <Image
+                src="/images/ias-image.jpg"
+                alt="SALTIS Event"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0d5a75] mb-8">
+                CE QUE VISE SALTIS
+              </h2>
+              <p className="text-lg text-gray-700 mb-8">
+                <strong>SALTIS ambitionne de devenir :</strong>
+              </p>
+              <ul className="space-y-4">
+                {ceQueViseSaltis.map((item, index) => (
+                  <li key={index} className="flex items-start gap-4">
+                    <div className="w-2 h-2 rounded-full bg-[#0d5a75] shrink-0 mt-2" />
+                    <p className="text-gray-700">{item}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-right text-sm text-[#FF6B35] font-medium mt-8">
+                Édition 5 du SALTIS : 08-09 Décembre 2026
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Historique & Évolution Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-[#0d5a75]/10 rounded-full px-4 py-2 mb-6">
-                <MapPin className="w-4 h-4 text-[#0d5a75]" />
-                <span className="text-[#0d5a75] text-sm font-semibold">Le Lieu</span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-                Musée des Civilisations Noires
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Un lieu emblématique qui incarne la rencontre entre tradition et
-                modernité, parfait pour accueillir un événement dédié à
-                l&apos;innovation africaine.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#FF6B35]/10 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-[#FF6B35]" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Adresse</p>
-                    <p className="text-gray-600">Place de la Nation, Dakar, Sénégal</p>
-                  </div>
+          <div className="flex items-center gap-4 mb-12">
+            <Image
+              src="/images/Logo-SALTIS.png"
+              alt="SALTIS Logo"
+              width={80}
+              height={40}
+              className="h-8 w-auto"
+            />
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0d5a75]">
+              HISTORIQUE & ÉVOLUTION
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="space-y-8">
+              {historique.map((item, index) => (
+                <div key={index} className="relative pl-8 border-l-2 border-[#FF6B35]">
+                  <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#FF6B35]" />
+                  <h3 className="text-[#FF6B35] font-bold text-lg mb-1">
+                    {item.year} | {item.title}
+                  </h3>
+                  <ul className="space-y-1">
+                    {item.items.map((subItem, subIndex) => (
+                      <li key={subIndex} className="text-gray-600 text-sm flex items-start gap-2">
+                        <span className="text-gray-400">○</span>
+                        {subItem}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#FF6B35]/10 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-[#FF6B35]" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Capacité</p>
-                    <p className="text-gray-600">+5000 participants</p>
-                  </div>
-                </div>
-              </div>
-              <Button
-                size="lg"
-                className="bg-[#0d5a75] hover:bg-[#0d5a75]/90 text-white"
-                asChild
-              >
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-                  Voir sur Google Maps
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
+              ))}
             </div>
-            
-            {/* Map Placeholder */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-[#0d5a75] to-[#083d52] rounded-3xl h-[400px] lg:h-[500px] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-white/30 rounded-full" />
-                  <div className="absolute top-1/3 right-1/3 w-48 h-48 border-2 border-white/20 rounded-full" />
-                  <div className="absolute bottom-1/4 left-1/3 w-24 h-24 border-2 border-white/40 rounded-full" />
-                </div>
-                <div className="text-center z-10">
-                  <div className="w-20 h-20 rounded-full bg-[#FF6B35] flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/30">
-                    <MapPin className="w-10 h-10 text-white" />
-                  </div>
-                  <p className="text-white text-xl font-bold mb-2">Musée des Civilisations Noires</p>
-                  <p className="text-white/70">Dakar, Sénégal</p>
-                </div>
-              </div>
+
+            <div className="relative h-[400px] lg:h-full rounded-3xl overflow-hidden bg-gray-200">
+              <Image
+                src="/images/ias-1.jpg"
+                alt="SALTIS History"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
+
+          <p className="text-right text-sm text-[#FF6B35] font-medium mt-8">
+            Édition 5 du SALTIS : 08-09 Décembre 2026
+          </p>
         </div>
       </section>
 
-      {/* CTA Section - Modern */}
+      {/* CTA Section */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d5a75] via-[#0a4a62] to-[#083d52]">
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FF6B35]/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/15 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
         </div>
         
         <div className="relative container mx-auto px-4 lg:px-8">
