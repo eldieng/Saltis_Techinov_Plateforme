@@ -19,13 +19,14 @@ const footerLinks = {
     { name: "Le Salon", href: "/salon" },
     { name: "Programme", href: "/programme" },
     { name: "Speakers", href: "/speakers" },
-    { name: "Exposants", href: "/exposants" },
-    { name: "Blog", href: "/blog" },
+    { name: "P.A.S Challenge", href: "/pag-challenge" },
+    { name: "A propos d'IAS", href: "/ias" },
   ],
   resources: [
-    { name: "P.A.S Challenge", href: "/pag-challenge" },
-    { name: "IAS", href: "/ias" },
+    { name: "Exposants", href: "/exposants" },
+    { name: "Devenir Exposant", href: "/formulaire-exposant" },
     { name: "Billetterie", href: "/billetterie" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   legal: [
@@ -68,8 +69,8 @@ export function Footer() {
                 <Calendar className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">SALTIS TechInov 2025</h3>
-                <p className="text-white/70">25-26 Novembre 2025 • Musée des Civilisations Noires, Dakar</p>
+                <h3 className="text-xl font-bold text-white">SALTIS TechInov 2026</h3>
+                <p className="text-white/70">08-09 Décembre 2026 • Musée des Civilisations Noires, Dakar</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-4">

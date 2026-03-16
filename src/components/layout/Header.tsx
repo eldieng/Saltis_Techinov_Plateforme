@@ -26,11 +26,8 @@ const navigation = [
   { name: "Salon", href: "/salon" },
   { name: "Programme", href: "/programme" },
   { name: "Speakers", href: "/speakers" },
-  { name: "Exposants", href: "/exposants" },
   { name: "P.A.S Challenge", href: "/pag-challenge" },
-  { name: "IAS", href: "/ias" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: "A propos d'IAS", href: "/ias" },
 ];
 
 export function Header() {
