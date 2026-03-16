@@ -11,3 +11,4 @@ export { IASSection } from "./IASSection";
 export { BlogSection } from "./BlogSection";
 export { GallerySection } from "./GallerySection";
 export { PhotoGallerySection } from "./PhotoGallerySection";
+export { WhySenegalSection } from "./WhySenegalSection";

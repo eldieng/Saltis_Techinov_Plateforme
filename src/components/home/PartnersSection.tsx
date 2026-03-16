@@ -1,15 +1,33 @@
+"use client";
+
+import Image from "next/image";
+
 const partners = [
-  { name: "Partner 1", logo: "/partners/partner1.png" },
-  { name: "Partner 2", logo: "/partners/partner2.png" },
-  { name: "Partner 3", logo: "/partners/partner3.png" },
-  { name: "Partner 4", logo: "/partners/partner4.png" },
-  { name: "Partner 5", logo: "/partners/partner5.png" },
-  { name: "Partner 6", logo: "/partners/partner6.png" },
+  { name: "Ministère de la Communication", logo: "/images/partenaire/Logo-MCTN-scaled.png" },
+  { name: "Ministère de l'Éducation", logo: "/images/partenaire/Logo-MEN-scaled.png" },
+  { name: "Meta", logo: "/images/partenaire/Meta-Logo-scaled.png" },
+  { name: "GIZ", logo: "/images/partenaire/giz.jpg" },
+  { name: "ESTM", logo: "/images/partenaire/Logo-ESTM-paysage-1-scaled.png" },
+  { name: "AI Hubs", logo: "/images/partenaire/AIHUBS-logo2.png" },
+  { name: "Galsen AI", logo: "/images/partenaire/galsen_ai_logo.jpg" },
+  { name: "WIC Sénégal", logo: "/images/partenaire/WIC-SN-1024x594-1.png" },
+  { name: "IP3 Conseil", logo: "/images/partenaire/Logo-IP3conseil.png" },
+  { name: "Kaikai", logo: "/images/partenaire/Logotype_Kaikai_white-orange-on-blue.jpg" },
+  { name: "DER", logo: "/images/partenaire/logo-der-only-noir_0.png" },
+  { name: "Festic", logo: "/images/partenaire/logo_festic_bg_less.png" },
+  { name: "Syrate", logo: "/images/partenaire/logo_syrate.png" },
+  { name: "Senyone", logo: "/images/partenaire/senyone_logo.jpg" },
+  { name: "ANAQ-Sup", logo: "/images/partenaire/anaq_sup-removebg-preview-1.png" },
+  { name: "CIGASS", logo: "/images/partenaire/cigass-logo-01.jpg" },
+  { name: "Cosydep", logo: "/images/partenaire/logo-cosydep-png.jpg-1024x422-1.png" },
+  { name: "Wossap AI", logo: "/images/partenaire/wossap.ai-1-scaled.png" },
+  { name: "Dolph Stat", logo: "/images/partenaire/dolph_stat_consulting_logo.jpg" },
+  { name: "PACE", logo: "/images/partenaire/logo-pacex400.png" },
 ];
 
 export function PartnersSection() {
   return (
-    <section className="py-20">
+    <section className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -25,18 +43,47 @@ export function PartnersSection() {
           </p>
         </div>
 
-        {/* Partners Grid - Placeholder */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors h-24"
-            >
-              <div className="text-gray-400 text-sm font-medium text-center">
-                {partner.name}
-              </div>
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* First Row - Left to Right */}
+          <div className="flex animate-scroll-left mb-6">
+            <div className="flex gap-8 animate-scroll-left-content">
+              {[...partners.slice(0, 10), ...partners.slice(0, 10)].map((partner, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-24 w-40"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-16 w-auto"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Second Row - Right to Left */}
+          <div className="flex animate-scroll-right">
+            <div className="flex gap-8 animate-scroll-right-content">
+              {[...partners.slice(10), ...partners.slice(10)].map((partner, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-24 w-40"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-16 w-auto"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Become Partner CTA */}
@@ -44,7 +91,7 @@ export function PartnersSection() {
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-8 bg-gradient-to-r from-[#0d5a75] to-[#1a7a9a] rounded-2xl">
             <div className="text-white text-center sm:text-left">
               <h3 className="text-xl font-semibold mb-1">
-                Devenez partenaire de SALTIS 2025
+                Devenez partenaire de SALTIS 2026
               </h3>
               <p className="text-white/80 text-sm">
                 Rejoignez l&apos;écosystème tech le plus dynamique d&apos;Afrique de
@@ -60,6 +107,36 @@ export function PartnersSection() {
           </div>
         </div>
       </div>
+
+      {/* CSS for carousel animation */}
+      <style jsx>{`
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        @keyframes scroll-right {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        .animate-scroll-left-content {
+          animation: scroll-left 30s linear infinite;
+        }
+        .animate-scroll-right-content {
+          animation: scroll-right 30s linear infinite;
+        }
+        .animate-scroll-left-content:hover,
+        .animate-scroll-right-content:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 }
