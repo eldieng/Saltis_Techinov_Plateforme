@@ -115,24 +115,32 @@ export function StatsSection() {
           </p>
         </div>
 
-        {/* Stats Grid with Images */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+        {/* Stats Grid with Images - Row 1 */}
+        <div className="grid grid-cols-3 gap-4 mb-4">
           <StatCard value={mainStats[0].value} prefix={mainStats[0].prefix} label={mainStats[0].label} />
           <ImageCard src={images[0]} alt="SALTIS Event" />
           <StatCard value={mainStats[1].value} prefix={mainStats[1].prefix} label={mainStats[1].label} />
+        </div>
+
+        {/* Stats Grid with Images - Row 2 */}
+        <div className="grid grid-cols-3 gap-4 mb-4">
           <ImageCard src={images[1]} alt="SALTIS Event" />
           <StatCard value={mainStats[2].value} prefix={mainStats[2].prefix} label={mainStats[2].label} />
           <ImageCard src={images[2]} alt="SALTIS Event" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        {/* Stats Grid with Images - Row 3 */}
+        <div className="grid grid-cols-3 gap-4 mb-8">
           <StatCard value={mainStats[3].value} prefix={mainStats[3].prefix} label={mainStats[3].label} />
           <ImageCard src={images[3]} alt="SALTIS Event" />
-          <div className="col-span-2 bg-[#0a4a62]/60 backdrop-blur rounded-2xl p-6 flex items-center justify-center">
-            <p className="text-white text-center text-lg">
-              SALTIS est aujourd&apos;hui la <span className="text-[#FF6B35] font-bold">plateforme IA de référence</span> en Afrique francophone.
-            </p>
-          </div>
+          <StatCard value={mainStats[4].value} prefix={mainStats[4].prefix} label={mainStats[4].label} />
+        </div>
+
+        {/* Platform Statement */}
+        <div className="bg-[#0a4a62]/60 backdrop-blur rounded-full py-4 px-8 mb-12 max-w-2xl mx-auto">
+          <p className="text-white text-center text-lg">
+            SALTIS est aujourd&apos;hui la <span className="text-[#FF6B35] font-bold underline">plateforme IA de référence</span> en Afrique francophone.
+          </p>
         </div>
 
         {/* Impact Section */}

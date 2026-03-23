@@ -82,16 +82,16 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right Content - Image */}
-          <div className="relative">
-            <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden">
+          {/* Right Content - IAS Logo */}
+          <div className="relative flex items-center justify-center">
+            <div className="relative w-full max-w-md">
               <Image
-                src="/images/ias-image.jpg"
-                alt="SALTIS - Innovation Africaine"
-                fill
-                className="object-cover object-top"
+                src="/images/SEC-ias-1.jpeg"
+                alt="IAS - Institut Africain des Sciences"
+                width={400}
+                height={400}
+                className="w-full h-auto object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-100/50 to-transparent" />
             </div>
           </div>
         </div>
