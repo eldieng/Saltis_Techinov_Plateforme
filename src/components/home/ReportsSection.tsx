@@ -1,6 +1,7 @@
 "use client";
 
-import { FileText, Download, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Download, ArrowRight } from "lucide-react";
 
 export function ReportsSection() {
   return (
@@ -50,18 +51,18 @@ export function ReportsSection() {
               </div>
             </div>
             
-            {/* Right - Visual */}
+            {/* Right - Cover Image */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="w-64 h-80 bg-white rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300 flex items-center justify-center p-6">
-                  <div className="text-center">
-                    <FileText className="w-16 h-16 text-[#0d5a75] mx-auto mb-4" />
-                    <p className="text-[#0d5a75] font-bold text-lg">SALTIS</p>
-                    <p className="text-[#FF6B35] font-bold text-2xl">2025</p>
-                    <p className="text-gray-500 text-sm mt-2">Rapport Officiel</p>
-                  </div>
+                <div className="w-72 h-96 rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300 overflow-hidden">
+                  <Image
+                    src="/images/rapport SALTIS.png"
+                    alt="Rapport SALTIS 2025"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-64 h-80 bg-[#FF6B35]/20 rounded-lg -z-10" />
+                <div className="absolute -bottom-4 -right-4 w-72 h-96 bg-[#FF6B35]/20 rounded-lg -z-10" />
               </div>
             </div>
           </div>
@@ -76,20 +77,18 @@ export function ReportsSection() {
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Left - Visual */}
+            {/* Left - Cover Image */}
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="relative">
-                <div className="w-64 h-80 bg-gradient-to-br from-[#FF6B35] to-[#e85a2a] rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300 flex items-center justify-center p-6">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <FileText className="w-10 h-10 text-white" />
-                    </div>
-                    <p className="text-white font-bold text-lg">PAS Challenge</p>
-                    <p className="text-white font-bold text-2xl">2025</p>
-                    <p className="text-white/70 text-sm mt-2">Rapport Officiel</p>
-                  </div>
+                <div className="w-72 h-96 rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300 overflow-hidden">
+                  <Image
+                    src="/images/rapport PAS.png"
+                    alt="Rapport PAS Challenge 2025"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-64 h-80 bg-white/10 rounded-lg -z-10" />
+                <div className="absolute -bottom-4 -left-4 w-72 h-96 bg-white/10 rounded-lg -z-10" />
               </div>
             </div>
             

@@ -82,14 +82,14 @@ export function PartnersSection() {
               {[...row1, ...row1].map((partner, index) => (
                 <div
                   key={`row1-${index}`}
-                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={80}
-                    height={40}
-                    className="object-contain max-h-10 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-14 w-auto"
                   />
                 </div>
               ))}
@@ -98,14 +98,14 @@ export function PartnersSection() {
               {[...row1, ...row1].map((partner, index) => (
                 <div
                   key={`row1-dup-${index}`}
-                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={80}
-                    height={40}
-                    className="object-contain max-h-10 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-14 w-auto"
                   />
                 </div>
               ))}
@@ -118,14 +118,14 @@ export function PartnersSection() {
               {[...row2, ...row2].map((partner, index) => (
                 <div
                   key={`row2-${index}`}
-                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={80}
-                    height={40}
-                    className="object-contain max-h-10 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-14 w-auto"
                   />
                 </div>
               ))}
@@ -134,14 +134,14 @@ export function PartnersSection() {
               {[...row2, ...row2].map((partner, index) => (
                 <div
                   key={`row2-dup-${index}`}
-                  className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                  className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={80}
-                    height={40}
-                    className="object-contain max-h-10 w-auto"
+                    width={100}
+                    height={50}
+                    className="object-contain max-h-14 w-auto"
                   />
                 </div>
               ))}
@@ -155,14 +155,14 @@ export function PartnersSection() {
                 {[...row3, ...row3, ...row1.slice(0, 8)].map((partner, index) => (
                   <div
                     key={`row3-${index}`}
-                    className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                    className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                   >
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={80}
-                      height={40}
-                      className="object-contain max-h-10 w-auto"
+                      width={100}
+                      height={50}
+                      className="object-contain max-h-14 w-auto"
                     />
                   </div>
                 ))}
@@ -171,14 +171,14 @@ export function PartnersSection() {
                 {[...row3, ...row3, ...row1.slice(0, 8)].map((partner, index) => (
                   <div
                     key={`row3-dup-${index}`}
-                    className="shrink-0 flex items-center justify-center p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-16 w-32"
+                    className="shrink-0 flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-20 w-40"
                   >
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={80}
-                      height={40}
-                      className="object-contain max-h-10 w-auto"
+                      width={100}
+                      height={50}
+                      className="object-contain max-h-14 w-auto"
                     />
                   </div>
                 ))}
