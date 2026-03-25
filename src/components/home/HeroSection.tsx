@@ -98,7 +98,7 @@ export function HeroSection() {
 
 
         {/* Date */}
-        <p className="text-white text-2xl md:text-4xl font-bold tracking-wider mb-10 uppercase">
+        <p className="text-white text-lg md:text-2xl font-bold tracking-wider mb-10 uppercase">
           08-09 Décembre 2026
         </p>
 

@@ -116,35 +116,35 @@ export function StatsSection() {
         </div>
 
         {/* Stats Grid with Images - Row 1 */}
-        <div className="grid grid-cols-3 gap-3 mb-3 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 mb-4 max-w-5xl mx-auto">
           <StatCard value={mainStats[0].value} prefix={mainStats[0].prefix} label={mainStats[0].label} />
           <ImageCard src={images[0]} alt="SALTIS Event" />
           <StatCard value={mainStats[1].value} prefix={mainStats[1].prefix} label={mainStats[1].label} />
         </div>
 
         {/* Stats Grid with Images - Row 2 */}
-        <div className="grid grid-cols-3 gap-3 mb-3 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 mb-4 max-w-5xl mx-auto">
           <ImageCard src={images[1]} alt="SALTIS Event" />
           <StatCard value={mainStats[2].value} prefix={mainStats[2].prefix} label={mainStats[2].label} />
           <ImageCard src={images[2]} alt="SALTIS Event" />
         </div>
 
         {/* Stats Grid with Images - Row 3 */}
-        <div className="grid grid-cols-3 gap-3 mb-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 mb-6 max-w-5xl mx-auto">
           <StatCard value={mainStats[3].value} prefix={mainStats[3].prefix} label={mainStats[3].label} />
           <ImageCard src={images[3]} alt="SALTIS Event" />
           <StatCard value={mainStats[4].value} prefix={mainStats[4].prefix} label={mainStats[4].label} />
         </div>
 
         {/* Platform Statement */}
-        <div className="bg-[#0a4a62]/60 backdrop-blur rounded-full py-3 px-6 mb-10 max-w-xl mx-auto">
-          <p className="text-white text-center text-sm">
+        <div className="border-2 border-[#FF6B35]/50 bg-[#0a4a62]/40 backdrop-blur rounded-xl py-4 px-8 mb-10 max-w-2xl mx-auto">
+          <p className="text-white text-center text-base">
             SALTIS est aujourd&apos;hui la <span className="text-[#FF6B35] font-bold underline">plateforme IA de référence</span> en Afrique francophone.
           </p>
         </div>
 
         {/* Impact Section */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-6">
             <TrendingUp className="w-5 h-5 text-[#FF6B35]" />
             <h3 className="text-lg font-bold text-white uppercase tracking-wide">
