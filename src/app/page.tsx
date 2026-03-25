@@ -9,6 +9,7 @@ import {
   WhySenegalSection,
   ReportsSection,
   LivreBlancSection,
+  TestimonialsSection,
 } from "@/components/home";
 
 export const dynamic = 'force-dynamic'; // Always fetch fresh data
@@ -31,9 +32,10 @@ export default function Home() {
       <PartnersSection />
       <AboutSection />
       <WhySenegalSection />
-      <PhotoGallerySection />
       <ReportsSection />
       <LivreBlancSection />
+      <TestimonialsSection />
+      <PhotoGallerySection />
       <BlogSection />
       <NewsletterSection />
     </>

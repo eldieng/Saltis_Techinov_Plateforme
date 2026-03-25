@@ -14,3 +14,4 @@ export { PhotoGallerySection } from "./PhotoGallerySection";
 export { WhySenegalSection } from "./WhySenegalSection";
 export { ReportsSection } from "./ReportsSection";
 export { LivreBlancSection } from "./LivreBlancSection";
+export { TestimonialsSection } from "./TestimonialsSection";
