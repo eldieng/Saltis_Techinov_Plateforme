@@ -82,15 +82,15 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right Content - IAS Logo */}
+          {/* Right Content - About Image */}
           <div className="relative flex items-center justify-center">
             <div className="relative w-full max-w-md">
               <Image
-                src="/images/SEC-ias-1.jpeg"
-                alt="IAS - Institut Africain des Sciences"
-                width={400}
+                src="/images/section about.jpg"
+                alt="SALTIS - Salon de l'Intelligence Artificielle"
+                width={500}
                 height={400}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-cover rounded-2xl shadow-xl"
               />
             </div>
           </div>

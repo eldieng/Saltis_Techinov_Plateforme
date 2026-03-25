@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
@@ -14,7 +14,7 @@ const testimonials = [
   {
     name: "Marlène Lasgouttes Sow",
     role: "General Management GOMYCODE",
-    image: "/images/temoignage/Marlène lasgouttes Sow.jpeg",
+    image: "/images/temoignage/Marlene lasgouttes Sow.jpeg",
     quote: "Je crois que nous avons au Sénégal une communauté de l'IA qui est vibrante et c'est une véritable chance car tous les pays n'ont pas encore cette maturité sur le sujet. Il est donc essentiel d'avoir des rendez-vous comme celui-ci pour permettre aux acteurs de se rencontrer, d'échanger et surtout pour que les jeunes puissent se sentir inspirés.",
   },
   {
@@ -41,14 +41,31 @@ export function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
-  };
+  }, []);
+
+  const scroll = useCallback((direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 420;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      
+      if (direction === "right" && scrollLeft >= scrollWidth - clientWidth - 10) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({
+          left: direction === "left" ? -scrollAmount : scrollAmount,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     checkScroll();
@@ -57,20 +74,24 @@ export function TestimonialsSection() {
       ref.addEventListener("scroll", checkScroll);
       return () => ref.removeEventListener("scroll", checkScroll);
     }
-  }, []);
+  }, [checkScroll]);
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 400;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      scroll("right");
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, scroll]);
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#0d5a75] via-[#1a6d8a] to-[#FF6B35] relative overflow-hidden">
+    <section 
+      className="py-20 bg-gradient-to-r from-[#0d5a75] via-[#1a6d8a] to-[#FF6B35] relative overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
       
@@ -100,12 +121,7 @@ export function TestimonialsSection() {
           </button>
           <button
             onClick={() => scroll("right")}
-            disabled={!canScrollRight}
-            className={`p-3 rounded-full border border-white/30 transition-all ${
-              canScrollRight
-                ? "bg-white/10 hover:bg-white/20 text-white"
-                : "bg-white/5 text-white/30 cursor-not-allowed"
-            }`}
+            className="p-3 rounded-full border border-white/30 transition-all bg-white/10 hover:bg-white/20 text-white"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -120,7 +136,7 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[350px] md:w-[400px] bg-white rounded-2xl p-6 shadow-xl snap-start"
+              className="shrink-0 w-[350px] md:w-[400px] bg-white rounded-2xl p-6 shadow-xl snap-start"
             >
               {/* Quote Icon */}
               <div className="mb-4">
