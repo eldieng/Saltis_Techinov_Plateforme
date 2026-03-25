@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 
 const testimonials = [
   {
@@ -35,63 +34,53 @@ const testimonials = [
     image: "/images/temoignage/Dr Lansana gagny Sakho.jpeg",
     quote: "Ce type d'initiative mérite d'être soutenu et répliqué dans d'autres régions du Sénégal. Il était vraiment important de réunir les acteurs de l'intelligence artificielle et de l'innovation. L'événement a été un succès, mais le plus important reste ce qui sera fait après : définir une feuille de route, renforcer l'implication des pouvoirs publics et préparer l'édition 2026.",
   },
+  {
+    name: "Ibrahima TOBE",
+    role: "Senior Director Information Technology at Emedia INVEST",
+    image: "/images/temoignage/Ibrahima TOBE.jpeg",
+    quote: "Participer à SALTIS 2025 a été une expérience particulièrement enrichissante pour moi. J'ai eu l'opportunité d'échanger avec des panelistes engagés, issus de divers horizons, mais tous mobilisés autour d'un objectif commun : renforcer la cybersécurité et promouvoir l'inclusion numérique au Sénégal.",
+  },
 ];
 
-export function TestimonialsSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const checkScroll = useCallback(() => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  }, []);
-
-  const scroll = useCallback((direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 420;
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      
-      if (direction === "right" && scrollLeft >= scrollWidth - clientWidth - 10) {
-        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        scrollRef.current.scrollBy({
-          left: direction === "left" ? -scrollAmount : scrollAmount,
-          behavior: "smooth",
-        });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    checkScroll();
-    const ref = scrollRef.current;
-    if (ref) {
-      ref.addEventListener("scroll", checkScroll);
-      return () => ref.removeEventListener("scroll", checkScroll);
-    }
-  }, [checkScroll]);
-
-  useEffect(() => {
-    if (isPaused) return;
-    
-    const interval = setInterval(() => {
-      scroll("right");
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isPaused, scroll]);
-
+function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <section 
-      className="py-20 bg-gradient-to-r from-[#0d5a75] via-[#1a6d8a] to-[#FF6B35] relative overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
+    <div className="shrink-0 w-[350px] md:w-[400px] bg-white rounded-2xl p-6 shadow-xl">
+      {/* Quote Icon */}
+      <div className="mb-4">
+        <Quote className="w-8 h-8 text-[#FF6B35]/30" />
+      </div>
+      
+      {/* Quote Text */}
+      <p className="text-gray-700 text-sm leading-relaxed mb-6 line-clamp-5">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+      
+      {/* Author */}
+      <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+        <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FF6B35]/20">
+          <Image
+            src={testimonial.image}
+            alt={testimonial.name}
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div>
+          <h4 className="font-bold text-[#0d5a75] text-sm">
+            {testimonial.name}
+          </h4>
+          <p className="text-gray-500 text-xs">
+            {testimonial.role}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function TestimonialsSection() {
+  return (
+    <section className="py-20 bg-gradient-to-r from-[#0d5a75] via-[#1a6d8a] to-[#FF6B35] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
       
@@ -105,69 +94,18 @@ export function TestimonialsSection() {
             Découvrez ce que les acteurs de l&apos;écosystème pensent de notre événement
           </p>
         </div>
+      </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-end gap-2 mb-6">
-          <button
-            onClick={() => scroll("left")}
-            disabled={!canScrollLeft}
-            className={`p-3 rounded-full border border-white/30 transition-all ${
-              canScrollLeft
-                ? "bg-white/10 hover:bg-white/20 text-white"
-                : "bg-white/5 text-white/30 cursor-not-allowed"
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => scroll("right")}
-            className="p-3 rounded-full border border-white/30 transition-all bg-white/10 hover:bg-white/20 text-white"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+      {/* Marquee Carousel */}
+      <div className="relative flex overflow-hidden">
+        <div className="flex gap-6 animate-marquee-left-slow">
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <TestimonialCard key={`t1-${index}`} testimonial={testimonial} />
+          ))}
         </div>
-
-        {/* Testimonials Carousel */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="shrink-0 w-[350px] md:w-[400px] bg-white rounded-2xl p-6 shadow-xl snap-start"
-            >
-              {/* Quote Icon */}
-              <div className="mb-4">
-                <Quote className="w-8 h-8 text-[#FF6B35]/30" />
-              </div>
-              
-              {/* Quote Text */}
-              <p className="text-gray-700 text-sm leading-relaxed mb-6 line-clamp-6">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FF6B35]/20">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#0d5a75] text-sm">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-gray-500 text-xs">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="flex gap-6 animate-marquee-left-slow" aria-hidden="true">
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <TestimonialCard key={`t2-${index}`} testimonial={testimonial} />
           ))}
         </div>
       </div>

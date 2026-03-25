@@ -257,3 +257,7 @@
 .animate-marquee-right {
   animation: marquee-right 40s linear infinite;
 }
+
+.animate-marquee-left-slow {
+  animation: marquee-left 60s linear infinite;
+}
