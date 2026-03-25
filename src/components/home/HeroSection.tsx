@@ -81,16 +81,12 @@ export function HeroSection() {
         {/* AI Event Badge */}
         <div className="inline-block border border-white/50 px-6 py-2 mb-8">
           <span className="text-white text-sm md:text-base tracking-[0.3em] uppercase">
-            AI Event
+            Dakar
           </span>
         </div>
 
         {/* Full Title */}
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-6 leading-relaxed">
-          Salon International des Algorithmes,<br />
-          des Sciences, des Technologies et<br />
-          de l&apos;Innovation du Sénégal
-        </h2>
+
 
         {/* Subtitle */}
         <p className="text-white/80 text-sm md:text-base mb-6 max-w-2xl">
@@ -99,9 +95,7 @@ export function HeroSection() {
         </p>
 
         {/* Theme */}
-        <p className="text-white/70 text-sm md:text-base italic mb-8 max-w-2xl">
-          Transformer les réalités africaines en opportunités durables et révéler les champions du continent
-        </p>
+
 
         {/* Date */}
         <p className="text-white text-2xl md:text-4xl font-bold tracking-wider mb-10 uppercase">

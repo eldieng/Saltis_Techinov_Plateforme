@@ -28,13 +28,13 @@ export default function Home() {
       {/* Content */}
       <HeroSection />
       <StatsSection />
+      <PartnersSection />
       <AboutSection />
       <WhySenegalSection />
       <PhotoGallerySection />
       <ReportsSection />
       <LivreBlancSection />
       <BlogSection />
-      <PartnersSection />
       <NewsletterSection />
     </>
   );

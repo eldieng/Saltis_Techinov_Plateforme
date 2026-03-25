@@ -1,63 +1,137 @@
 "use client";
 
-import { FileText } from "lucide-react";
-
-const reports = [
-  {
-    badge: "NOUVEAU",
-    title: "Rapport Officiel",
-    highlight: "SALTIS 2025",
-    description:
-      "Découvrez le bilan complet de l'édition 2025 : discussions, innovations, chiffres clés et perspectives pour l'avenir de l'IA en Afrique de l'Ouest.",
-    link: "/images/document/Rapport-SALTIS-2025-.pdf",
-  },
-  {
-    badge: "NOUVEAU",
-    title: "Rapport",
-    highlight: "PAS Challenge 2025",
-    description:
-      "Retrouvez le rapport officiel du PAS Challenge 2025 : résultats, projets innovants et retours sur cette compétition dédiée à l'intelligence artificielle.",
-    link: "/images/document/Rapport-officiel-du-challenge-PAS-2025.pdf",
-  },
-];
+import { FileText, Download, ArrowRight } from "lucide-react";
 
 export function ReportsSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-[#0d5a75] to-[#094559]">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {reports.map((report, index) => (
-            <div key={index} className="text-center">
-              {/* Badge */}
+    <>
+      {/* SALTIS 2025 Report Section */}
+      <section className="py-16 bg-gradient-to-br from-[#0d5a75] via-[#0a4a62] to-[#094559] relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6B35]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-2xl" />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left - Content */}
+            <div className="text-center lg:text-left">
               <span className="inline-block px-4 py-1.5 bg-[#FF6B35]/20 border border-[#FF6B35]/40 text-[#FF6B35] text-sm font-semibold rounded-full mb-6">
-                {report.badge}
+                RAPPORT OFFICIEL
               </span>
-
-              {/* Title */}
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {report.title}{" "}
-                <span className="text-[#FF6B35]">{report.highlight}</span>
-              </h3>
-
-              {/* Description */}
-              <p className="text-white/70 mb-8 max-w-md mx-auto leading-relaxed">
-                {report.description}
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Rapport <span className="text-[#FF6B35]">SALTIS 2025</span>
+              </h2>
+              
+              <p className="text-white/70 text-lg mb-8 leading-relaxed max-w-lg">
+                Découvrez le bilan complet de l&apos;édition 2025 : discussions, innovations, 
+                chiffres clés et perspectives pour l&apos;avenir de l&apos;IA en Afrique de l&apos;Ouest.
               </p>
-
-              {/* CTA Button */}
-              <a
-                href={report.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white font-semibold rounded-xl transition-all hover:scale-105 shadow-lg shadow-[#FF6B35]/25"
-              >
-                <FileText className="w-5 h-5" />
-                VOIR LE RAPPORT
-              </a>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="/images/document/Rapport-SALTIS-2025-.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white font-semibold rounded-xl transition-all hover:scale-105 shadow-lg shadow-[#FF6B35]/25"
+                >
+                  <Download className="w-5 h-5" />
+                  Télécharger le rapport
+                </a>
+                <a
+                  href="/images/document/Rapport-SALTIS-2025-.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-white/30 text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+                >
+                  Consulter en ligne
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
-          ))}
+            
+            {/* Right - Visual */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="w-64 h-80 bg-white rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300 flex items-center justify-center p-6">
+                  <div className="text-center">
+                    <FileText className="w-16 h-16 text-[#0d5a75] mx-auto mb-4" />
+                    <p className="text-[#0d5a75] font-bold text-lg">SALTIS</p>
+                    <p className="text-[#FF6B35] font-bold text-2xl">2025</p>
+                    <p className="text-gray-500 text-sm mt-2">Rapport Officiel</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-64 h-80 bg-[#FF6B35]/20 rounded-lg -z-10" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* PAS Challenge 2025 Report Section */}
+      <section className="py-16 bg-gradient-to-br from-[#094559] via-[#0a4a62] to-[#0d5a75] relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF6B35]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-white/5 rounded-full blur-2xl" />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left - Visual */}
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+              <div className="relative">
+                <div className="w-64 h-80 bg-gradient-to-br from-[#FF6B35] to-[#e85a2a] rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300 flex items-center justify-center p-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FileText className="w-10 h-10 text-white" />
+                    </div>
+                    <p className="text-white font-bold text-lg">PAS Challenge</p>
+                    <p className="text-white font-bold text-2xl">2025</p>
+                    <p className="text-white/70 text-sm mt-2">Rapport Officiel</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -left-4 w-64 h-80 bg-white/10 rounded-lg -z-10" />
+              </div>
+            </div>
+            
+            {/* Right - Content */}
+            <div className="text-center lg:text-left order-1 lg:order-2">
+              <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/30 text-white text-sm font-semibold rounded-full mb-6">
+                PAS CHALLENGE
+              </span>
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Rapport <span className="text-[#FF6B35]">PAS Challenge 2025</span>
+              </h2>
+              
+              <p className="text-white/70 text-lg mb-8 leading-relaxed max-w-lg">
+                Retrouvez le rapport officiel du PAS Challenge 2025 : résultats, projets innovants 
+                et retours sur cette compétition dédiée à l&apos;intelligence artificielle.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="/images/document/Rapport-officiel-du-challenge-PAS-2025.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-[#0d5a75] font-semibold rounded-xl transition-all hover:scale-105 shadow-lg"
+                >
+                  <Download className="w-5 h-5" />
+                  Télécharger le rapport
+                </a>
+                <a
+                  href="/images/document/Rapport-officiel-du-challenge-PAS-2025.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 border border-white/30 text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+                >
+                  Consulter en ligne
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

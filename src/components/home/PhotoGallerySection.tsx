@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 const photos = [
+  // Existing photos
   {
     src: "/images/retour_photo/IMG_3647-scaled.jpg",
     alt: "SALTIS 2025 - Networking",
@@ -28,19 +29,45 @@ const photos = [
     alt: "SALTIS 2025 - Audience",
     size: "small",
   },
+  // New photos from Jour1
   {
-    src: "/images/retour_photo/WhatsApp-Image-2025-12-21-at-15.10.34-1.jpeg",
-    alt: "SALTIS 2025 - Stand",
+    src: "/images/Jour1/7293970f80a02d49f44867a55e3d0495.JPG",
+    alt: "SALTIS 2025 - Jour 1",
     size: "small",
   },
   {
-    src: "/images/retour_photo/WhatsApp-Image-2025-12-21-at-15.10.34-2.jpeg",
-    alt: "SALTIS 2025 - Rencontre",
+    src: "/images/Jour1/909d479bc62da68d0db621ef84c41cd3.JPG",
+    alt: "SALTIS 2025 - Conférence Jour 1",
     size: "small",
   },
   {
-    src: "/images/retour_photo/WhatsApp-Image-2025-12-21-at-15.10.40.jpeg",
-    alt: "SALTIS 2025 - Échange",
+    src: "/images/Jour1/9e3a74561e98ec96b7915ea29bb684cc.JPG",
+    alt: "SALTIS 2025 - Panel Jour 1",
+    size: "small",
+  },
+  {
+    src: "/images/Jour1/f2d77135588cbced88f2cfad97614986.JPG",
+    alt: "SALTIS 2025 - Networking Jour 1",
+    size: "small",
+  },
+  {
+    src: "/images/Jour1/e4ca5d5cacafe4e3cd60e70e2b021b08.JPG",
+    alt: "SALTIS 2025 - Présentation Jour 1",
+    size: "small",
+  },
+  {
+    src: "/images/Jour1/c91618841881159075ffcc8391052b0e.JPG",
+    alt: "SALTIS 2025 - Discussion Jour 1",
+    size: "small",
+  },
+  {
+    src: "/images/Jour1/a18ab556cd2ad7c852a1077583dff0a9.JPG",
+    alt: "SALTIS 2025 - Audience Jour 1",
+    size: "small",
+  },
+  {
+    src: "/images/Jour1/99b09db98534973b922bc955fbf3ebb7.JPG",
+    alt: "SALTIS 2025 - Stand Jour 1",
     size: "small",
   },
 ];
@@ -60,9 +87,9 @@ export function PhotoGallerySection() {
         </div>
 
         {/* Photo Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {/* Large image - spans 2 rows and 2 cols on md+ */}
-          <div className="col-span-2 row-span-2 relative h-[350px] md:h-[500px] rounded-2xl overflow-hidden group">
+          <div className="col-span-2 row-span-2 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden group">
             <Image
               src={photos[0].src}
               alt={photos[0].alt}
@@ -72,11 +99,11 @@ export function PhotoGallerySection() {
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
           </div>
 
-          {/* Small images */}
+          {/* First row small images */}
           {photos.slice(1, 5).map((photo, index) => (
             <div
               key={index}
-              className="relative h-[170px] md:h-[240px] rounded-2xl overflow-hidden group"
+              className="relative h-[145px] md:h-[195px] rounded-xl overflow-hidden group"
             >
               <Image
                 src={photo.src}
@@ -88,11 +115,27 @@ export function PhotoGallerySection() {
             </div>
           ))}
 
-          {/* Bottom row - 3 images */}
-          {photos.slice(5, 8).map((photo, index) => (
+          {/* Second row - 4 images */}
+          {photos.slice(5, 9).map((photo, index) => (
             <div
               key={index + 5}
-              className="relative h-[180px] md:h-[220px] rounded-2xl overflow-hidden group"
+              className="relative h-[150px] md:h-[180px] rounded-xl overflow-hidden group"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+            </div>
+          ))}
+
+          {/* Third row - 4 images */}
+          {photos.slice(9, 13).map((photo, index) => (
+            <div
+              key={index + 9}
+              className="relative h-[150px] md:h-[180px] rounded-xl overflow-hidden group"
             >
               <Image
                 src={photo.src}
